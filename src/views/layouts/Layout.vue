@@ -1,0 +1,27 @@
+<template>
+    <div class="wrapper">
+        <div class="body-overlay"></div>
+        <SideBar/>
+        <div id="content">
+            <HeaderBar class="shadow" />
+            <div class="main-content vh-100 pt-0 p-0">
+            <router-view/>
+             </div>
+                 <!-- <FooterBar /> -->
+    
+        </div>
+    </div>
+       
+</template>
+
+<script>
+import SideBar from "@/components/SideBar.vue";
+import HeaderBar from "@/components/HeaderBar.vue";
+import FooterBar from "@/components/Footer.vue";
+export default{
+    name:'Layout',
+    components:{
+        SideBar,HeaderBar,FooterBar
+    }
+}
+</script>
