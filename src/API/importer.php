@@ -22,11 +22,12 @@ if ($action == 'add') {
     $code = $_POST['code'];
     $libelle = $_POST['libelle'];
     $catego = $_POST['categorie'];
-  
-    $sql = "INSERT INTO SANCTION VALUES ('$code','$libelle','$catego')";
-  
+
+    $sql = "INSERT INTO SANCTION VALUES ('$code','$libelle','$catego');";
+
     if ($conn->query($sql) == true) {
       $data['message'] = 'Success...! les données sont enregistrer';
+
     } else {
       # code...
       $data['error'] = true;

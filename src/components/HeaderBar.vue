@@ -134,39 +134,31 @@ export default {
     },
     onData(results) {
       // Do something with the data here
-      console.log('Rows ', results.rows[0]);
-        this.sanctions = results.rows[0];
+      console.log('Rows => ', results.rows);
 
+      var donnee = new FormData();
 
-      if (this.sanctions != '') {
-
-        console.log('Sanction ', this.sanctions['code']);
-        console.log('Sanction ', this.sanctions['libelle']);
-        console.log('Sanction ', this.sanctions['code_categorie']);
-
-        var donnee = new FormData();
-
-        donnee.append('code ', this.sanctions['code']);
-        donnee.append('libelle ', this.sanctions['libelle']);
-        donnee.append('categorie ', this.sanctions['code_categorie']);
+      for (let i = 0; i < 0 ; i++) {
+        donnee.append('code', results.rows[1].code);
+        donnee.append('libelle', results.rows[1].libelle);
+        donnee.append('categorie', results.rows[1].code_categorie);
 
         accountService.addImport(donnee).then((res) => {
-
-          if (res.data.error) {
-            console.log("error 1...!", res.data.message);
-
-          } else {
-            console.log("success 1...!", res.data.message);
-          }
+            if (res.data.error) {
+              console.log("🚫error 1...!num:",i, res.data.message);           
+            } else {
+              console.log("✅success 1...! num:",i, res.data.message);
+            }
         }).catch((err) => { console.log(err) });
-
-
       }
+ 
     }
   },
 
 }
 </script>
+
+
 <style>
 .csv {
   font-size: 16px;
