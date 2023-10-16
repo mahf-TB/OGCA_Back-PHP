@@ -13,17 +13,17 @@
             <hr class="dropdown-divider" />
         
             <li class="dropdown">
-                <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle " >
+                <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" >
                     <v-icon style="top: 0;">mdi-ansible</v-icon><span class="text-white">Avancement</span></a>
-                <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                <ul class="collapse list-unstyled menu pl-4" id="homeSubmenu1">
                     <li>
-                        <RouterLink class="text-white" aria-current="page" to="/avancement">Liste Tout</RouterLink>
+                        <RouterLink class="text-white" aria-current="page" to="/avancement">Liste complète</RouterLink>
                     </li>
                     <li>
-                        <a href="#" class="text-white">Home 2</a>
+                        <a href="#" class="text-white">Avancement dans 6mois </a>
                     </li>
                     <li>
-                        <a href="#" class="text-white">Home 3</a>
+                        <a href="#" class="text-white">Avancement en retard</a>
                     </li>
                 </ul>
             </li>

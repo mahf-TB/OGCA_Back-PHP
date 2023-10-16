@@ -119,7 +119,7 @@
                 </div>
                 <div class="card-content table-responsive">
                     <table class="table table-hover">
-                        <thead class="text-primary">
+                        <thead class="text-primary table-dark">
                             <tr>
                                 <th >ID</th>
                                 <th>Name</th>

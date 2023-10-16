@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class="m-3">
+        <!--  Bfrtip -->
         <div class="mr-4 ml-4 mt-3 mb-3">
-            <div class="table-responsive">
+            <div class=" table-responsive">
                 <DataTable :data="dataAgents" :columns="columns"
                     class="table table-hover table-striped table-bordered display" :options="{
                         responsive: true, autoWidth: false, dom: 'Bfrtip', language: {
@@ -9,34 +10,21 @@
                             info: 'Affichage de _START_ à _END_ sur _TOTAL_ entrées',
                             infoFiltered: '(Montrer _MAX_ entrées)',
                             paginate: { first: 'Prémière', previous: 'Précédent', next: 'Suivant', last: 'Dernière' }
-                        }, buttons: botones, 
-                        columnDefs: [
-                            {
-                                target: 2,
-                                visible: false,
-                                searchable: false
-                            },
-                            {
-                                target: 3,
-                                visible: false
-                            }
-                        ]
+                        }, buttons: botones,
+
                     }">
-                    <thead class="table-success">
+                    <thead class=" toto table-success ">
                         <tr>
-                            <th class="fw-bolder">Matricule</th>
-                            <th class="fw-bolder">Nom</th>
-                            <th class="fw-bolder">Prenom</th>
-                            <th class="fw-bolder">Date_de_Naissance</th>
-                            <th class="fw-bolder">CIN</th>
-                            <th class="fw-bolder">Sexe</th>
-                            <th class="fw-bolder">Statut</th>
-                            <th class="fw-bolder">Date_Avancement</th>
-                            <th class="fw-bolder">Grage</th>
-                            <th class="fw-bolder">Corps</th>
-                            <th class="fw-bolder">Section</th>
-                            <th class="fw-bolder">Ministere</th>
-                            <th class="fw-bolder">Sanction</th>
+                            <th class="fw-bolder">MATRICULE</th>
+                            <th class="fw-bolder">NOMS</th>
+                            <th class="fw-bolder">STATUT</th>
+                            <th class="fw-bolder">DATE_DERNIER_AVANCEMENT</th>
+                            <th class="fw-bolder">CORPS_CODE</th>
+                            <th class="fw-bolder">GRADE_CODE_ACTUEL</th>
+                            <th class="fw-bolder">DATE_PROCHAIN_AVANCEMENT</th>
+                            <th class="fw-bolder">MOIS_AVANCEMENT</th>
+                            <th class="fw-bolder">SECTION_CODE</th>
+                            <th class="fw-bolder">SOA_LIBELLE</th>
                         </tr>
                     </thead>
                 </DataTable>
@@ -73,21 +61,18 @@ export default {
         return {
             dataAgents: null,
             scrollX: true,
-
             columns: [
-                { data: 'agent_matricule' },
-                { data: 'nom' },
+                { data: 'mat' },
+                { data: 'noms' },
                 { data: 'prenom' },
-                { data: 'date_naissance' },
-                { data: 'cin' },
-                { data: 'sexe' },
                 { data: 'statut' },
-                { data: 'date_avance'},
-                { data: 'grade_abreviation' },
-                { data: 'corps_libelle' },
-                { data: 'section_code' },
-                { data: 'ministere_libelle' },
-                { data: 'sanction_code' }
+                { data: 'date_derniere' },
+                { data: 'corps' },
+                { data: 'grade' },
+                { data: 'date_prochain' },
+                { data: 'mois_avancement' },
+                { data: 'section' },
+                { data: 'soa_libelle' }
             ],
             botones: [
                 {
@@ -95,12 +80,6 @@ export default {
                     extend: 'excelHtml5',
                     text: '<strong>Excel</strong>',
                     className: 'btn btn-success'
-                },
-                {
-                    title: 'Liste des tout agents',
-                    extend: 'pdfHtml5',
-                    text: '<strong>PDF</strong>',
-                    className: 'btn btn-warning'
                 },
                 {
                     title: 'Liste des tout agents',
@@ -114,6 +93,32 @@ export default {
                     text: ' <strong>Copie</strong>',
                     className: 'btn btn-dark'
                 },
+            ],
+            agent: [
+                {       
+                        mat: '123',
+                        noms: 'Andrimahefa Bienvenu',
+                        statut: 'fonctionnaire',
+                        date_derniere: '16/05/2022',
+                        corps: 'U03B',
+                        grade: '2C1E',
+                        date_prochain: '16/05/2024',
+                        mois_avancement: '05-2024',
+                        section: '098353ZE',
+                        soa_libelle: 'PERSONNEL FINANCES CENTRAL ',
+                },
+                {       
+                        mat: '686',
+                        noms: 'drimahefa Bienvenu',
+                        statut: 'fonctionnaire',
+                        date_derniere: '16/05/2022',
+                        corps: 'U03B',
+                        grade: '2C1E',
+                        date_prochain: '16/05/2024',
+                        mois_avancement: '05-2024',
+                        section: '098353ZE',
+                        soa_libelle: 'PERSONNEL FINANCES CENTRAL ',
+                }
             ]
         };
     },
@@ -127,7 +132,7 @@ export default {
                     console.log("error 1...!", res.data.message);
                 } else {
                     console.log("success 1...!", res.data.message);
-                    this.dataAgents = res.data.dataAgents
+                    this.dataAgents = this.agent;
                     console.log(this.dataAgents);
                 }
             }).catch(err => { console.log(err) });
@@ -146,10 +151,8 @@ export default {
 };
 </script>
 <style>
-.fw>th {
-    font-weight: bolder;
+.toto {
+    font-size: 16px;
 }
-
-
 </style>
   

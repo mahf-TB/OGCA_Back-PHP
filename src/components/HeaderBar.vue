@@ -54,6 +54,14 @@
                   </RouterLink>
                 </li>
                 <li>
+                  <usecsv-button importerKey="2371f42e-68fa-472b-b760-c12e27ffe7b4" :user="{ userId: '12345' }"
+                    :metadata="{ anotherId: '123' }" :onData="onData" v-slot="slotProps">
+                    <a class="dropdown-item d-flex justify-content-around align-items-center" style="font-size: 14px;"
+                      @click="slotProps.openModal()">
+                      <v-icon >mdi-file-excel</v-icon> Importer Data</a>
+                  </usecsv-button>
+                </li>
+                <li>
                   <hr class="dropdown-divider" />
                   <a class="dropdown-item d-flex justify-content-around align-items-center " href="#"
                     @click.prevent="deconnecter()">
@@ -135,23 +143,23 @@ export default {
     onData(results) {
       // Do something with the data here
       console.log('Rows => ', results.rows);
-
       var donnee = new FormData();
 
-      for (let i = 0; i < 0 ; i++) {
-        donnee.append('code', results.rows[1].code);
-        donnee.append('libelle', results.rows[1].libelle);
-        donnee.append('categorie', results.rows[1].code_categorie);
+      for (let i = 0; i < results.rows.lenght; i++) {
+        
+        donnee.append('code', results.rows[i].col1);
+        donnee.append('soa', results.rows[i].col2);
+        donnee.append('libelle', results.rows[i].col3);
 
         accountService.addImport(donnee).then((res) => {
-            if (res.data.error) {
-              console.log("🚫error 1...!num:",i, res.data.message);           
-            } else {
-              console.log("✅success 1...! num:",i, res.data.message);
-            }
+          if (res.data.error) {
+            console.log("🚫error 1...!num:", i, res.data.message);
+          } else {
+            console.log("✅success 1...! num:", i, res.data.message);
+          }
         }).catch((err) => { console.log(err) });
       }
- 
+
     }
   },
 

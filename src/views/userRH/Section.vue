@@ -29,7 +29,7 @@
                   <li>
                      <div class="col-12">
                         <input type="checkbox" class="check mr-4" :value="data.section_code" v-model="section" placeholder="name@example.com">
-                        <label for="floatingInput"> {{ data.section_libelle }}</label>
+                        <label for="floatingInput"><strong>({{ data.section_code }})-</strong> {{ data.section_libelle }}</label>
                      </div>
                   </li>
                </ul>
@@ -90,7 +90,7 @@ export default {
                }).catch((err) => { console.log(err) });
 
          } else {
-            console.log('remplire formulaire d authentification')
+            console.log('remplire bien les formulaire')
 
          }
          // #####################################
