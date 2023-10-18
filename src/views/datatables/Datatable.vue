@@ -1,11 +1,11 @@
 <template>
-    <div class="m-3">
+    <div>
         <!--  Bfrtip -->
         <div class="mr-4 ml-4 mt-3 mb-3">
             <div class=" table-responsive">
                 <DataTable :data="dataAgents" :columns="columns"
                     class="table table-hover table-striped table-bordered display" :options="{
-                        responsive: true, autoWidth: false, dom: 'Bfrtip', language: {
+                        responsive: false, autoWidth: false, dom: 'Blrftip', language: {
                             search: 'Recherche', zeroRecords: 'aucune donnée disponible',
                             info: 'Affichage de _START_ à _END_ sur _TOTAL_ entrées',
                             infoFiltered: '(Montrer _MAX_ entrées)',
@@ -13,18 +13,18 @@
                         }, buttons: botones,
 
                     }">
-                    <thead class=" toto table-success ">
-                        <tr>
+                    <thead class="table-success ">
+                        <tr class="toto">
                             <th class="fw-bolder">MATRICULE</th>
                             <th class="fw-bolder">NOMS</th>
                             <th class="fw-bolder">STATUT</th>
-                            <th class="fw-bolder">DATE_DERNIER_AVANCEMENT</th>
-                            <th class="fw-bolder">CORPS_CODE</th>
-                            <th class="fw-bolder">GRADE_CODE_ACTUEL</th>
-                            <th class="fw-bolder">DATE_PROCHAIN_AVANCEMENT</th>
-                            <th class="fw-bolder">MOIS_AVANCEMENT</th>
-                            <th class="fw-bolder">SECTION_CODE</th>
-                            <th class="fw-bolder">SOA_LIBELLE</th>
+                            <th class="fw-bolder">DERNIER AVANCEMENT</th>
+                            <th class="fw-bolder">CORPS CODE</th>
+                            <th class="fw-bolder">GRADE CODE_ACTUEL</th>
+                            <th class="fw-bolder">PROCHAIN VANCEMENT</th>
+                            <th class="fw-bolder">MOIS VANCEMENT</th>
+                            <th class="fw-bolder">SECTION CODE</th>
+                            <th class="fw-bolder">SOA LIBELLE</th>
                         </tr>
                     </thead>
                 </DataTable>
@@ -59,21 +59,23 @@ export default {
     },
     data() {
         return {
+
             dataAgents: null,
             scrollX: true,
+
             columns: [
-                { data: 'mat' },
-                { data: 'noms' },
-                { data: 'prenom' },
-                { data: 'statut' },
-                { data: 'date_derniere' },
-                { data: 'corps' },
-                { data: 'grade' },
-                { data: 'date_prochain' },
-                { data: 'mois_avancement' },
-                { data: 'section' },
-                { data: 'soa_libelle' }
+                { data: 'AGENT_MATRICULE' },
+                { data: 'NOMS' },
+                { data: 'STATUT' },
+                { data: 'DERNIER_AVANCEMENT' },
+                { data: 'CORPS_CODE' },
+                { data: 'GRADE_CODE' },
+                { data: 'PROCHAIN_AVANCEMENT' },
+                { data: 'REG_CODE' },
+                { data: 'SECTION_CODE' },
+                { data: 'SOA' },
             ],
+
             botones: [
                 {
                     title: 'Liste des tout agents',
@@ -94,48 +96,28 @@ export default {
                     className: 'btn btn-dark'
                 },
             ],
-            agent: [
-                {       
-                        mat: '123',
-                        noms: 'Andrimahefa Bienvenu',
-                        statut: 'fonctionnaire',
-                        date_derniere: '16/05/2022',
-                        corps: 'U03B',
-                        grade: '2C1E',
-                        date_prochain: '16/05/2024',
-                        mois_avancement: '05-2024',
-                        section: '098353ZE',
-                        soa_libelle: 'PERSONNEL FINANCES CENTRAL ',
-                },
-                {       
-                        mat: '686',
-                        noms: 'drimahefa Bienvenu',
-                        statut: 'fonctionnaire',
-                        date_derniere: '16/05/2022',
-                        corps: 'U03B',
-                        grade: '2C1E',
-                        date_prochain: '16/05/2024',
-                        mois_avancement: '05-2024',
-                        section: '098353ZE',
-                        soa_libelle: 'PERSONNEL FINANCES CENTRAL ',
-                }
-            ]
         };
     },
     mounted() {
         this.getAgents();
     },
     methods: {
-        getAgents() {
-            accountService.allAgents().then(res => {
+        async getAgents() {
+            try {
+                const res = await accountService.allAgents();
+
+                console.log(res.data.dataAgents);
                 if (res.data.error) {
                     console.log("error 1...!", res.data.message);
                 } else {
                     console.log("success 1...!", res.data.message);
-                    this.dataAgents = this.agent;
-                    console.log(this.dataAgents);
+                    this.dataAgents = res.data.dataAgents;
                 }
-            }).catch(err => { console.log(err) });
+
+
+            } catch (err) {
+                console.log(err);
+            }
 
         },
         editItem(item) {
@@ -150,9 +132,28 @@ export default {
 
 };
 </script>
+
+
 <style>
-.toto {
-    font-size: 16px;
+.fw-bolder {
+    font-size: 14px;
 }
-</style>
+
+.dataTables_wrapper .dataTables_filter input {
+    font-size: 14px;
+    width: 300px;
+}
+
+.dataTables_filter {
+    position: absolute;
+    right: 40px;
+    top: 70px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.odd td,
+.even td {
+    font-size: 14px;
+}</style>
   

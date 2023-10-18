@@ -17,14 +17,10 @@ if (isset($_GET['action'])) {
 }
 if ($action == 'agent') {
 
-    $sql = "SELECT agent_matricule, nom, prenom, date_naissance, cin, sexe, statut, date_avance, corps_libelle, grade_abreviation, ministere_libelle, section_code, sanction_code
-     FROM AGENTS JOIN GRADE ON code_grade=grade_code 
-     JOIN CORPS ON code_corps=corps_code 
-     JOIN MINISTERE ON code_ministere = minstere_code 
-     JOIN SECTION ON code_section=section_code 
-     JOIN SANCTION ON code_sanction=sanction_code;";
+    $sql = "SELECT AGENT_MATRICULE,CONCAT(nom,' ', prenom) as NOMS,STATUT,AVANCE_DATE as DERNIER_AVANCEMENT,CORPS_CODE, GRADE_CODE, POSTE_AGENT_DATE_DEBUT_CONTRAT as PROCHAIN_AVANCEMENT, REG_CODE,SECTION_CODE, SOA 
+            FROM AGENTS;";
 
-
+    // $sql = "SELECT * FROM `MINISTERE`;";
     $resultat = $conn->query($sql);
     $info = array();
     while ($a = $resultat->fetch_array()) {

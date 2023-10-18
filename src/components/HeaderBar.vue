@@ -6,7 +6,12 @@
       <div class="container-fluid ">
         <div class="xp-breadcrumbbar d-flex text-center">
           <ol class="breadcrumb align-items-center">
-            <v-icon style="top: 0;margin-right: 10px;" size="35">mdi-chevron-left</v-icon>
+            
+            <li>
+              <button type="button" id="sidebarCollapse">
+                <v-icon style="top: 0;margin-right: 10px;" size="35">mdi-chevron-left</v-icon>
+              </button>
+            </li>
             <li class="breadcrumb-item" v-for="item in breadcrumbs" :key="item" :href="item.active ? '' : item.path"
               :active="item.active">
               {{ item.name }}
@@ -29,7 +34,7 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item mr-4 ">
 
-              <usecsv-button importerKey="2371f42e-68fa-472b-b760-c12e27ffe7b4" :user="{ userId: '12345' }"
+              <usecsv-button importerKey="53c08f3e-c394-4f41-8791-49dc252ded3a" :user="{ userId: '12345' }"
                 :metadata="{ anotherId: '123' }" :onData="onData" v-slot="slotProps">
                 <a class="csv d-flex justify-content-around align-items-center p-0 m-0" @click="slotProps.openModal()">
                   <v-icon size="20">mdi-file-excel</v-icon> Importer Data</a>
@@ -47,14 +52,13 @@
                   <a class="dropdown-item d-flex justify-content-around align-items-center " href="#">
                     <v-icon> mdi-account</v-icon>Mon Profile</a>
                 </li>
-                <li>
-                  <RouterLink class="dropdown-item d-flex justify-content-around align-items-center " to="/user/list"
-                    v-if="ajouter">
+                <li v-if="ajouter">
+                  <RouterLink class="dropdown-item d-flex justify-content-around align-items-center " to="/user/list">
                     <v-icon> mdi-account-group</v-icon>Nouvelle RH
                   </RouterLink>
                 </li>
-                <li>
-                  <usecsv-button importerKey="2371f42e-68fa-472b-b760-c12e27ffe7b4" :user="{ userId: '12345' }"
+                <li v-if="ajouter">
+                  <usecsv-button importerKey="53c08f3e-c394-4f41-8791-49dc252ded3a" :user="{ userId: '12345' }"
                     :metadata="{ anotherId: '123' }" :onData="onData" v-slot="slotProps">
                     <a class="dropdown-item d-flex justify-content-around align-items-center" style="font-size: 14px;"
                       @click="slotProps.openModal()">

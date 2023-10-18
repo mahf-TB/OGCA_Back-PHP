@@ -1,14 +1,15 @@
 <template>
     <div class="wrapper">
         <div class="body-overlay"></div>
-        <SideBar/>
+        <nav id="sidebar" >
+            <SideBar/>
+        </nav>
         <div id="content">
             <HeaderBar class="shadow" />
             <div class="main-content vh-100 pt-0 p-0">
             <router-view/>
              </div>
                  <!-- <FooterBar /> -->
-    
         </div>
     </div>
        

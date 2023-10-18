@@ -1,6 +1,6 @@
 <template>
-    <nav id="sidebar">
-        <div class="sidebar-header">
+    
+        <div class="sidebar-header" >
             <h3 class="text-size"><img :src="require('@/assets/SRSP-LOGO.png')" height="40" alt="MDB Logo" loading="lazy" /><span>Avancement
                     Contractuel & Retraite</span></h3>
         </div>
@@ -17,13 +17,13 @@
                     <v-icon style="top: 0;">mdi-ansible</v-icon><span class="text-white">Avancement</span></a>
                 <ul class="collapse list-unstyled menu pl-4" id="homeSubmenu1">
                     <li>
-                        <RouterLink class="text-white" aria-current="page" to="/avancement">Liste complète</RouterLink>
+                        <RouterLink class="text-white" style="font-size: 14px;"  aria-current="page" to="/avancement">Liste complète</RouterLink>
                     </li>
                     <li>
-                        <a href="#" class="text-white">Avancement dans 6mois </a>
+                        <a href="#" style="font-size: 14px;" class="text-white">Avancement dans 6mois </a>
                     </li>
                     <li>
-                        <a href="#" class="text-white">Avancement en retard</a>
+                        <a href="#" style="font-size: 14px;"  class="text-white">Avancement en retard</a>
                     </li>
                 </ul>
             </li>
@@ -31,15 +31,15 @@
             <li class="dropdown">
                 <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <v-icon style="top: 0;">mdi-alpha-c-box</v-icon><span class="text-white">Contractuel</span></a>
-                <ul class="collapse list-unstyled menu" id="pageSubmenu2">
+                <ul class="collapse list-unstyled menu pl-4" id="pageSubmenu2">
                     <li>
-                        <a href="#" class="text-white">Page 1</a>
+                        <a href="#" style="font-size: 14px;"  class="text-white">Liste complète</a>
                     </li>
                     <li>
-                        <a href="#" class="text-white">Page 2</a>
+                        <a href="#" style="font-size: 14px;"  class="text-white">Avancement en retard</a>
                     </li>
                     <li>
-                        <a href="#" class="text-white">Page 3</a>
+                        <a href="#" style="font-size: 14px;"  class="text-white">Avancement en retard</a>
                     </li>
                 </ul>
             </li>
@@ -48,7 +48,7 @@
                 <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <v-icon style="top: 0;">mdi-alpha-r-box</v-icon>
                     <span class="text-white">Retraite</span></a>
-                <ul class="collapse list-unstyled menu" id="pageSubmenu3">
+                <ul class="collapse list-unstyled menu pl-4" id="pageSubmenu3">
                     <li>
                         <a href="#" class="text-white">Page 1</a>
                     </li>
@@ -73,7 +73,6 @@
         </ul>
 
 
-    </nav>
 </template>
 
 <script>
