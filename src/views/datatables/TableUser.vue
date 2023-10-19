@@ -31,7 +31,6 @@ export default {
     data() {
         return {
             headers: [
-                { title: 'ID', key: 'id' },
                 { title: 'Matricule', key: 'matricule' },
                 { title: 'Nom', key: 'nom' },
                 { title: 'Prénom', key: 'prenom' },
@@ -59,9 +58,9 @@ export default {
             this.$router.push("/user/edit");
         },
 
-        deleteItem(item) {
+        async deleteItem(item) {
             var donnee = new FormData();
-            donnee.append('id', item.columns.id);
+            donnee.append('id', item.columns.matricule);
 
             try {
                 Swal.fire({
@@ -76,11 +75,11 @@ export default {
 
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        accountService.deleteUser(donnee).then((res) => {
+                       accountService.deleteUser(donnee).then((res) => {
                             if (res.data.error) {
                                 Swal.fire({
                                     title: 'Deleted!',
-                                    title: 'Your file has been deleted.',
+                                    title: 'Your file has not been deleted.',
                                     icon: 'error',
                                     timer: 1000
                                 })
@@ -94,8 +93,6 @@ export default {
                                 this.getAllUser();
                             }
                         })
-
-
 
                     }
                 }).catch((err) => { console.log(err) });

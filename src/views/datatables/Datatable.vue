@@ -15,16 +15,16 @@
                     }">
                     <thead class="table-success ">
                         <tr class="toto">
-                            <th class="fw-bolder">MATRICULE</th>
-                            <th class="fw-bolder">NOMS</th>
-                            <th class="fw-bolder">STATUT</th>
-                            <th class="fw-bolder">DERNIER AVANCEMENT</th>
-                            <th class="fw-bolder">CORPS CODE</th>
-                            <th class="fw-bolder">GRADE CODE_ACTUEL</th>
-                            <th class="fw-bolder">PROCHAIN VANCEMENT</th>
-                            <th class="fw-bolder">MOIS VANCEMENT</th>
-                            <th class="fw-bolder">SECTION CODE</th>
-                            <th class="fw-bolder">SOA LIBELLE</th>
+                            <th class="fw-bolder" style="font-size: 14px;">MATRICULE</th>
+                            <th class="fw-bolder" style="font-size: 14px;">NOMS</th>
+                            <th class="fw-bolder" style="font-size: 14px;">STATUT</th>
+                            <th class="fw-bolder" style="font-size: 14px;">DERNIER AVANCEMENT</th>
+                            <th class="fw-bolder" style="font-size: 14px;">CORPS CODE</th>
+                            <th class="fw-bolder" style="font-size: 14px;">GRADE CODE_ACTUEL</th>
+                            <th class="fw-bolder" style="font-size: 14px;">PROCHAIN AVANCEMENT</th>
+                            <th class="fw-bolder" style="font-size: 14px;">MOIS AVANCEMENT</th>
+                            <th class="fw-bolder" style="font-size: 14px;">SECTION CODE</th>
+                            <th class="fw-bolder" style="font-size: 14px;">SOA LIBELLE</th>
                         </tr>
                     </thead>
                 </DataTable>
@@ -105,7 +105,6 @@ export default {
         async getAgents() {
             try {
                 const res = await accountService.allAgents();
-
                 console.log(res.data.dataAgents);
                 if (res.data.error) {
                     console.log("error 1...!", res.data.message);
@@ -120,14 +119,7 @@ export default {
             }
 
         },
-        editItem(item) {
-            // Mettez ici votre logique d'édition
-            console.log("Édition de l'élément :", item);
-        },
-        deleteItem(item) {
-            // Mettez ici votre logique de suppression
-            console.log("Suppression de l'élément :", item);
-        },
+       
     },
 
 };

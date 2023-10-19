@@ -48,7 +48,7 @@ if ($action == 'add') {
   $password = $_POST['password'];
   $role = $_POST['role'];
 
-  $sql = "INSERT INTO `USERS` (`id`, `matricule`, `nom`, `prenom`, `password`, `role`) VALUES (NULL, '$matricule', '$nom', '$prenom', '$password', '$role');";
+  $sql = "INSERT INTO `USERS` ( `matricule`, `nom`, `prenom`, `password`, `role`) VALUES ( '$matricule', '$nom', '$prenom', '$password', '$role');";
 
   if ($conn->query($sql) == true) {
     $data['message'] = 'Success...! les données sont enregistrer';
@@ -60,13 +60,15 @@ if ($action == 'add') {
 }
 
 if ($action == 'edit') {
+
+  $id = $_POST['id_mat'];
   $matricule = $_POST['matricule'];
   $nom = $_POST['nom'];
   $prenom = $_POST['prenom'];
   $password = $_POST['password'];
   $role = $_POST['role'];
 
-  $sql = "UPDATE `USERS` SET `nom`='$nom',`prenom`='$prenom',`role`='$role' WHERE matricule='$matricule';";
+  $sql = "UPDATE `USERS` SET `matricule`='$matricule', `nom`='$nom',`prenom`='$prenom',`role`='$role' WHERE matricule='$id';";
 
   if ($conn->query($sql) == true) {
     $data['message'] = 'Success...! les données sont modifier';
@@ -80,7 +82,7 @@ if ($action == 'edit') {
 if ($action == 'delete') {
 
   $ID = $_POST['id'];
-  $sql = " DELETE FROM USERS WHERE id = '$ID'";
+  $sql = " DELETE FROM USERS WHERE matricule = '$ID'";
   if ($conn->query($sql) == true) {
     $data['message'] = 'Success...! les données sont Supprimer';
   } else {
@@ -110,12 +112,12 @@ if ($action == 'section') {
   }
 }
 
-if ($action == 'addSEC') {
+if ($action == 'addSec') {
 
   $id_user = $_POST['matricule'];
   $id_section = $_POST['section'];
 
-  $sql = "INSERT INTO `USERS` (`id`, `mat ricule`, `nom`, `prenom`, `password`, `role`) VALUES (NULL, '$matricule', '$nom', '$prenom', '$password', '$role');";
+  $sql = "INSERT INTO `USER_SECTION`(`id`, `id_section`, `id_user`) VALUES (null,'$id_section','$id_user');";
 
   if ($conn->query($sql) == true) {
     $data['message'] = 'Success...! les données sont enregistrer';

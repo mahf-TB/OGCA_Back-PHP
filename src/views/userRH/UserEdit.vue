@@ -14,15 +14,8 @@
                <div class="col-12">
                   <div class="form-floating mb-3">
                      <input type="text" class="form-control" v-model="user.matricule" id="floatingInput"
-                        placeholder="name@example.com" autocomplete="address-level7" readonly>
+                        placeholder="name@example.com" autocomplete="address-level7" >
                      <label for="floatingInput"> Matricule</label>
-                  </div>
-               </div>
-               <div class="col-12">
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" v-model.trim="user.prenom" id="floatingInput"
-                        placeholder="name@example.com" autocomplete="address-level6" >
-                     <label for="floatingInput">Prenom</label>
                   </div>
                </div>
                <div class="col-12">
@@ -30,6 +23,13 @@
                      <input type="text" class="form-control"  v-model="user.nom" id="floatingPassword"
                         placeholder="Password" autocomplete="address-level4" >
                      <label for="floatingPassword">Nom</label>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <div class="form-floating mb-3">
+                     <input type="text" class="form-control" v-model.trim="user.prenom" id="floatingInput"
+                        placeholder="name@example.com" autocomplete="address-level6" >
+                     <label for="floatingInput">Prenom</label>
                   </div>
                </div>
                <div class="col-12 mb-3">
@@ -88,11 +88,11 @@ export default{
          
       },
       getModif(){
-
+         const userEdit= JSON.parse(localStorage.getItem('edit-user'));
          var donnee = new FormData();
          if (this.user.matricule != '' && this.user.nom != '' && this.user.prenom != ''  && this.user.role != '' ) {
             
-            
+               donnee.append('id_mat', userEdit.matricule);
                donnee.append('matricule', this.user.matricule);
                donnee.append('nom', this.user.nom.toUpperCase());
                donnee.append('prenom', this.user.prenom);

@@ -1,7 +1,7 @@
 <template>
   <!-- Section: Design Block -->
   <section class="background-radial-gradient overflow-hidden">
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5 vh-100">
       <div class="row gx-lg-5 align-items-center mb-5">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
           <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
@@ -91,7 +91,7 @@ export default {
         donnee.append('matricule', this.matricule);
         donnee.append('password', this.password);
 
-        accountService.onlogin(donnee).then((res) => {
+        await accountService.onlogin(donnee).then((res) => {
           if (res.data.error) {
             console.log("error 1...!", res.data.message);
             this.valid = res.data.error

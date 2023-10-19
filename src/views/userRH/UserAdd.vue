@@ -48,17 +48,15 @@
                      <div class="invalid-feedback">Verifiez votre mot de passe si correct! </div>
                   </div>
                </div>
-               <div class="col-md-6 mb-3">
+               <!-- <div class="col-md-6 mb-3">
                   <div class="form-floating">
                      <select class="form-select" id="floatingSelect" v-model="user.role"
                         aria-label="Floating label select example">
-                        <option selected>Ouvrir cette menu selecte</option>
-                        <option value="ADMIN">ADMIN</option>
-                        <option value="RH">RH</option>
+                        <option selected value="RH">RH</option>
                      </select>
                      <label for="floatingSelect">Rôle</label>
                   </div>
-               </div>
+               </div> -->
                <div class="d-flex align-items-md-start">
                   <button class="btn btn-lg btn-primary" @click.prevent="enregistre()" type="button">Enregistrer</button>
                   <RouterLink to="/user/list" class="btn btn-lg btn-danger" type="button">Annuler</RouterLink>
@@ -88,9 +86,10 @@ export default {
             nom: '',
             prenom: '',
             motdepasse: '',
-            role: '',
+            role: 'RH',
          },
          pwdConfirm: '',
+         valid:false,
        
       }
    },
@@ -113,7 +112,7 @@ export default {
 
                   } else {
                      console.log("success 1...!", res.data.message);
-                     this.$router.push('/user/section')
+                     this.$router.push(`/user/section/${this.user.matricule}`)
                   }
                }).catch((err) => { console.log(err) });
 
@@ -124,7 +123,7 @@ export default {
 
          } else {
             console.log('remplire formulaire d authentification')
-            this.validTout = true;
+            this.valid = true;
          }
          // #####################################
 

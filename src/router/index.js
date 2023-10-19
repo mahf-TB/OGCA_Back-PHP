@@ -12,7 +12,9 @@ const routes = [
     beforeEnter:auth.authConnect,
     children:[
       { path:'dashboard', name:'Dashboard', component:linkTo.Dashboard },
-      { path:'avancement', name:'Avancement', component:linkTo.Avancement }, 
+      { path:'avancement', name:'Avancement', component:linkTo.Avancement },
+      { path:'contractuel', name:'Contractuel', component:linkTo.Contractuel }, 
+      { path:'retraite', name:'Retraite', component:linkTo.Retraite },  
       {
         path: 'user', name: 'User', component: linkTo.LayoutUser,
         beforeEnter:auth.authUser,
@@ -20,7 +22,7 @@ const routes = [
           { path:'list', name:'ListUser', component:linkTo.UserList},
           { path:'add', name:'AddUser', component:linkTo.UserAdd},
           { path:'edit', name:'EditUser', component:linkTo.UserEdit}, 
-          { path:'section', name:'Section RH', component:linkTo.SectionUser},   
+          { path:'section/:id', name:'Section RH', component:linkTo.SectionUser},   
         ]
         
       },

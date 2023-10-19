@@ -58,7 +58,8 @@ export default {
    data() {
       return {
          dataSection: [],
-         section:[]
+         section:[],
+         matricule:''
       }
    },
    mounted() {
@@ -67,10 +68,14 @@ export default {
    methods: {
       enregistre() {
          var donnee = new FormData();
-         
-         if (this.setion != '') {
-            donnee.append('matricule', this.section);
-            console.log(donnee);
+         this.matricule = this.$route.params.id;
+
+         if (this.setion != '' && this.matricule != '') {
+            for (let i = 0; i < this.section.length; i++) {
+               donnee.append('matricule', this.matricule);
+               donnee.append('section', this.section[i]);
+               console.log(this.section[i]);
+
                accountService.setSection(donnee).then((res) => {
                   if (res.data.error) {
                      console.log("error 1...!", res.data.message);
@@ -81,6 +86,7 @@ export default {
                      Swal.fire({
                         icon: 'success',
                         title: 'Enregistrement !',
+                        text: `voulez-vous enregistrer ${this.section}`,
                         confirmButtonText: 'OK',
                         timer: 1000,
 
@@ -88,6 +94,8 @@ export default {
                      this.$router.push('/user/list')
                   }
                }).catch((err) => { console.log(err) });
+            }
+       
 
          } else {
             console.log('remplire bien les formulaire')

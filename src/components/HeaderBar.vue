@@ -5,12 +5,9 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid ">
         <div class="xp-breadcrumbbar d-flex text-center">
-          <ol class="breadcrumb align-items-center">
-            
-            <li>
-              <button type="button" id="sidebarCollapse">
+          <ol class="breadcrumb align-items-center">           
+            <li>             
                 <v-icon style="top: 0;margin-right: 10px;" size="35">mdi-chevron-left</v-icon>
-              </button>
             </li>
             <li class="breadcrumb-item" v-for="item in breadcrumbs" :key="item" :href="item.active ? '' : item.path"
               :active="item.active">
@@ -32,15 +29,7 @@
         <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none"
           id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item mr-4 ">
-
-              <usecsv-button importerKey="53c08f3e-c394-4f41-8791-49dc252ded3a" :user="{ userId: '12345' }"
-                :metadata="{ anotherId: '123' }" :onData="onData" v-slot="slotProps">
-                <a class="csv d-flex justify-content-around align-items-center p-0 m-0" @click="slotProps.openModal()">
-                  <v-icon size="20">mdi-file-excel</v-icon> Importer Data</a>
-              </usecsv-button>
-
-            </li>
+          
             <li class="dropdown nav-item border-user">
               <a href="#" class="nav-link text-white d-flex justify-content-around align-items-center "
                 data-toggle="dropdown">
