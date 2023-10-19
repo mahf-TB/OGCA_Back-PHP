@@ -97,6 +97,7 @@ export default {
             this.valid = res.data.error
           } else {
             console.log("success 1...!", res.data.message);
+            console.log("1...!", res.data.infoBD);
             localStorage.setItem("user-info", JSON.stringify(res.data.infoBD))
             this.$router.push("/");
           }

@@ -25,15 +25,27 @@ if ($action == 'login'){
     $password=$_POST['password'];
  
    
-  $sql = "select id,matricule,nom,prenom,role from USERS where matricule ='$matricule' AND password='$password';";
+    // SELECT id_section FROM USER_SECTION , USERS WHERE id_user=matricule AND matricule='44' AND password='mirana123';
+  $sql = "select matricule,nom,prenom,role from USERS where matricule ='$matricule' AND password='$password';";
     
     $resultat=$conn->query($sql);
     $info = array();
-    while ($a = $resultat->fetch_array()) {
-      array_push($info ,$a);
-    }
     $row = mysqli_num_rows($resultat);
     if ($row >0) {
+      while ($a = $resultat->fetch_array()) {
+        array_push($info ,$a);
+      }
+
+      // selectioner les section que les user
+      $qry = "SELECT id_section, matricule, nom, prenom, role  FROM USER_SECTION , USERS WHERE id_user=matricule AND matricule='$matricule' AND password='$password';";
+      $res=$conn->query($qry);
+      $ligne = mysqli_num_rows($res);
+      if ($ligne > 0) {
+        $info = array();
+        while ($a = $res->fetch_array()) {
+          array_push($info ,$a);
+        }
+      }
 
       $data['infoBD']=$info;
       $data['message']='vous etes connecter...';
