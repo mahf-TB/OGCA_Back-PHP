@@ -52,7 +52,7 @@
                 <span class="text-white">Retraite</span></a>
             <ul class="collapse list-unstyled menu pl-4" id="pageSubmenu3">
                 <li>
-                    <RouterLink to="/retraite" class="text-white">Retraiter dans 6 mois</RouterLink>
+                    <RouterLink to="/retraite" class="text-white">Retraiter dans 12 mois</RouterLink>
                 </li>
                 <li>
                     <RouterLink to="#" class="text-white">Page 3</RouterLink>
@@ -102,4 +102,5 @@ export default {
 .fotsy a {
     color: white;
 }
+
 </style>

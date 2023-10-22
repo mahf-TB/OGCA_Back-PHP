@@ -64,10 +64,10 @@ export default {
 
             try {
                 Swal.fire({
+                    icon: 'question',
                     title: 'Es-tu Sûr?',
                     text: "vous ne pourrez pas revenir en arrière !",
                     cancelButtonText: 'Annuler',
-                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: 'blue',
                     cancelButtonColor: '#e9061c',

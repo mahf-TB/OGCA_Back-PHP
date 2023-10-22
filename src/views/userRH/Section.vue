@@ -24,16 +24,20 @@
                </div>
             </div>
             <form class="row g-3 p-3">
+               <div class=" scrollable-list">
+                  <ul class="list-group " v-for="(data, index) in dataSection" :key="index">
+                     <li>
+                        <div class="col-12">
+                           <input type="checkbox" class="check mr-4" :value="data.section_code" v-model="section"
+                              placeholder="name@example.com">
+                           <label for="floatingInput"><strong>({{ data.section_code }})-</strong> {{ data.section_libelle
+                           }}</label>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
 
-               <ul v-for="(data, index) in dataSection" :key="index">
-                  <li>
-                     <div class="col-12">
-                        <input type="checkbox" class="check mr-4" :value="data.section_code" v-model="section" placeholder="name@example.com">
-                        <label for="floatingInput"><strong>({{ data.section_code }})-</strong> {{ data.section_libelle }}</label>
-                     </div>
-                  </li>
-               </ul>
-             
+
                <hr class="dropdown-divider" />
                <div class="d-flex align-items-md-start">
                   <button class="btn btn-lg btn-primary" @click.prevent="enregistre()" type="button">Enregistrer</button>
@@ -58,8 +62,8 @@ export default {
    data() {
       return {
          dataSection: [],
-         section:[],
-         matricule:''
+         section: [],
+         matricule: ''
       }
    },
    mounted() {
@@ -74,28 +78,36 @@ export default {
             for (let i = 0; i < this.section.length; i++) {
                donnee.append('matricule', this.matricule);
                donnee.append('section', this.section[i]);
-               console.log(this.section[i]);
 
-               accountService.setSection(donnee).then((res) => {
-                  if (res.data.error) {
-                     console.log("error 1...!", res.data.message);
+               Swal.fire({
+                  icon: 'question',
+                  title: 'Enregistrement !',
+                  text: `voulez-vous enregistrer ${this.section}`,
+                  cancelButtonText: 'Annuler',
+                  showCancelButton: true,
+                  confirmButtonText: 'OK',
+               }).then((result) => {
+                  if (result.isConfirmed) {
+                     accountService.setSection(donnee).then((res) => {
+                        if (res.data.error) {
+                           console.log("error 1...!", res.data.message);
 
-                  } else {
-                     console.log("success 1...!", res.data.message);
-                  
-                     Swal.fire({
-                        icon: 'success',
-                        title: 'Enregistrement !',
-                        text: `voulez-vous enregistrer ${this.section}`,
-                        confirmButtonText: 'OK',
-                        timer: 1000,
-
-                     })
-                     this.$router.push('/user/list')
+                        } else {
+                           Swal.fire({
+                                    title: 'Enregistrement !!',
+                                    title: `${res.data.message}`,
+                                    icon: 'success',
+                                    timer: 1000,
+                                 })
+                                 this.$router.push('/user/list')
+                        }
+                     }).catch((err) => { console.log(err) });
                   }
-               }).catch((err) => { console.log(err) });
+                  
+               })
+
             }
-       
+
 
          } else {
             console.log('remplire bien les formulaire')
@@ -123,4 +135,9 @@ export default {
 .card-sec {
    width: 70%;
 }
-</style>
+
+.scrollable-list {
+   max-height: 500px;
+   /* Ajustez la hauteur maximale selon vos besoins */
+   overflow: auto;
+}</style>

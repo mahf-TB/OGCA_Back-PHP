@@ -21,8 +21,14 @@ let editUser = (donnees) => {
 
 
 //axios pour  tout  AGENTS
-let allAgents = ()=>{
-    return Axios.get('/agents.php?action=agent')
+let allAgents = (donnees)=>{
+    return Axios.post('/agents.php?action=avenant', donnees)
+}
+let allAgentsCONTRAT = (donnees)=>{
+    return Axios.post('/agents.php?action=contrat', donnees)
+}
+let allAgentsRETRAITE = (donnees)=>{
+    return Axios.post('/agents.php?action=retraite', donnees)
 }
 
 //axios pour  tout  SECTION
@@ -42,6 +48,7 @@ let addImport = (donnees)=>{
 export const accountService = {
     onlogin,
     onAllUser,setUser,deleteUser,editUser,
-    allAgents,allSection,setSection,
+    allSection,setSection,
+    allAgents,allAgentsRETRAITE,allAgentsCONTRAT,
     addImport,
 }

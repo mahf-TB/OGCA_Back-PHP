@@ -6,21 +6,20 @@
         </nav>
         <div id="content">
             <HeaderBar class="shadow" />
-            <div class="main-content vh-100 pt-0 p-0">
+            <div class="main-content vh-100 pt-0 p-0 mb-0">
                 <router-view />
+                <FooterBar />
             </div>
-
+            
         </div>
-        <div class="card mt-0">
-            <FooterBar />
-        </div>
+        
     </div>
 </template>
 
 <script>
 import SideBar from "@/components/SideBar.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
-import FooterBar from "@/components/Footer.vue";
+import FooterBar from "@/components/FootNav.vue";
 export default {
     name: 'Layout',
     components: {

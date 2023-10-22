@@ -14,17 +14,17 @@
          </div>
      </div>
     <div class="card p-3" >
-       <DataTable />
+       <DatatableRetraite />
     </div>
  </template>
  
  <script>
  import sousHeader from "@/components/sousHeader.vue";
- import DataTable from '@/views/datatables/Datatable.vue';
+ import DatatableRetraite from '@/views/datatables/DatatableRetraite.vue';
  export default {
     name: 'Retraite',
     components: {
-       DataTable,sousHeader
+        DatatableRetraite,sousHeader
     }
  }
  </script>

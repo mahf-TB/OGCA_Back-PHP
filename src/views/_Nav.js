@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard.vue'
 import Avancement from './pages/Avancement.vue'
 import Contractuel from './pages/Contractuel.vue'
 import Retraite from './pages/Retraite.vue'
+import Profile from './pages/Profile.vue'
 
 import LayoutUser from './userRH/LayoutUser.vue'
 import UserList from './userRH/UserList.vue'
@@ -16,6 +17,6 @@ import SectionUser from './userRH/Section.vue'
 
 export{
     Page404,Login,
-    LayoutPage,Dashboard,Avancement,Contractuel,Retraite,
+    LayoutPage,Dashboard,Avancement,Contractuel,Retraite,Profile,
     LayoutUser,UserAdd, UserEdit,UserList,SectionUser
 }

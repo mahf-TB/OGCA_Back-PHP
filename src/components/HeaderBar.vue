@@ -38,8 +38,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item d-flex justify-content-around align-items-center " href="#">
-                    <v-icon> mdi-account</v-icon>Mon Profile</a>
+                  <RouterLink class="dropdown-item d-flex justify-content-around align-items-center " to="/profile">
+                    <v-icon> mdi-account</v-icon>Mon Profile</RouterLink>
                 </li>
                 <li v-if="ajouter">
                   <RouterLink class="dropdown-item d-flex justify-content-around align-items-center " to="/user/list">
@@ -182,5 +182,8 @@ export default {
 
 .border-user:hover {
   background-color: #0f8364;
+}
+.mrg{
+    margin: 0 5px;
 }
 </style>

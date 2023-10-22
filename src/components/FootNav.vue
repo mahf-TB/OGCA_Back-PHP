@@ -1,5 +1,5 @@
 <template>
-    <div class="card mt-0  p-3">
+ <div class="card mb-0  p-3">
          <div class="col-md-5 col-lg-3 order-3 order-md-2">
              <div class="xp-searchbar">
                  <form>
@@ -13,18 +13,14 @@
              </div>
          </div>
      </div>
-    <div class="card p-3" >
-       <DatatableContrat />
-    </div>
- </template>
- 
- <script>
- import sousHeader from "@/components/sousHeader.vue";
- import DatatableContrat from '@/views/datatables/DatatableContrat.vue';
- export default {
-    name: 'Contractuel',
-    components: {
-        DatatableContrat,sousHeader
-    }
- }
- </script>
+</template>
+
+<script>
+export default {
+    name: 'Footer'
+}
+</script>
+
+<style>
+
+</style>

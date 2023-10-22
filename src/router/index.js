@@ -14,14 +14,16 @@ const routes = [
       { path:'dashboard', name:'Dashboard', component:linkTo.Dashboard },
       { path:'avancement', name:'Avancement', component:linkTo.Avancement },
       { path:'contractuel', name:'Contractuel', component:linkTo.Contractuel }, 
-      { path:'retraite', name:'Retraite', component:linkTo.Retraite },  
+      { path:'retraite', name:'Retraite', component:linkTo.Retraite }, 
+      { path:'profile', name:'Profile', component:linkTo.Profile }, 
+          
       {
         path: 'user', name: 'User', component: linkTo.LayoutUser,
         beforeEnter:auth.authUser,
         children:[
-          { path:'list', name:'ListUser', component:linkTo.UserList},
-          { path:'add', name:'AddUser', component:linkTo.UserAdd},
-          { path:'edit', name:'EditUser', component:linkTo.UserEdit}, 
+          { path:'list', name:'Liste RH', component:linkTo.UserList},
+          { path:'add', name:'Add RH', component:linkTo.UserAdd},
+          { path:'edit', name:'Edit RH', component:linkTo.UserEdit}, 
           { path:'section/:id', name:'Section RH', component:linkTo.SectionUser},   
         ]
         

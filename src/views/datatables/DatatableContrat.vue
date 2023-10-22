@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <!--  Bfrtip -->
@@ -18,12 +19,10 @@
                             <th class="fw-bolder" style="font-size: 14px;">MATRICULE</th>
                             <th class="fw-bolder" style="font-size: 14px;">NOMS</th>
                             <th class="fw-bolder" style="font-size: 14px;">STATUT</th>
-                            <th class="fw-bolder" style="font-size: 14px;">DERNIER AVANCEMENT</th>
                             <th class="fw-bolder" style="font-size: 14px;">CORPS CODE</th>
-                            <th class="fw-bolder" style="font-size: 14px;">GRADE CODE_ACTUEL</th>
-                            <th class="fw-bolder" style="font-size: 14px;">PROCHAIN AVANCEMENT</th>
-                            <th class="fw-bolder" style="font-size: 14px;">MOIS AVANCEMENT</th>
+                            <th class="fw-bolder" style="font-size: 14px;">FIN DU CONTRAT</th>
                             <th class="fw-bolder" style="font-size: 14px;">SECTION CODE</th>
+                            <th class="fw-bolder" style="font-size: 14px;">SOA CODE</th>
                             <th class="fw-bolder" style="font-size: 14px;">SOA LIBELLE</th>
                         </tr>
                     </thead>
@@ -62,20 +61,16 @@ export default {
 
             dataAgents: null,
             scrollX: true,
-
             columns: [
                 { data: 'AGENT_MATRICULE' },
                 { data: 'NOMS' },
                 { data: 'STATUT' },
-                { data: 'DERNIER_AVANCEMENT' },
                 { data: 'CORPS_CODE' },
-                { data: 'GRADE_CODE' },
-                { data: 'PROCHAIN_AVANCEMENT' },
-                { data: 'REG_CODE' },
+                { data: 'FIN_CONTRAT' },
                 { data: 'SECTION_CODE' },
                 { data: 'SOA' },
+                { data: 'REG_CODE' },
             ],
-
             botones: [
                 {
                     title: 'Liste des tout agents',
@@ -96,30 +91,64 @@ export default {
                     className: 'btn btn-dark'
                 },
             ],
+
+
         };
     },
     mounted() {
         this.getAgents();
+
     },
     methods: {
         async getAgents() {
-            try {
-                const res = await accountService.allAgents();
-                console.log(res.data.dataAgents);
-                if (res.data.error) {
-                    console.log("error 1...!", res.data.message);
-                } else {
-                    console.log("success 1...!", res.data.message);
-                    this.dataAgents = res.data.dataAgents;
+            const user = JSON.parse(localStorage.getItem("user-info"));
+
+            var donnee = new FormData();
+
+
+            if (user[0].role == 'ADMIN') {
+                donnee.append('role', user[0].role);
+                console.log(user);
+                try {
+                    const res = await accountService.allAgentsCONTRAT(donnee);
+                    if (res.data.error) {
+                        console.log("error 1...!", res.data.message);
+                    } else {
+                        console.log("success 1...!", res.data.message);
+                        this.dataAgents = res.data.dataAgents;
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
+            } else {
+                for (let item = 0; item < user.length; item++) {
+                    donnee.append('role', user[item].role);
+                    donnee.append('section', user[item].id_section);
 
-
-            } catch (err) {
-                console.log(err);
+                    try {
+                        const res = await accountService.allAgentsCONTRAT(donnee);
+                        if (res.data.error) {
+                            console.log("error 1...!", res.data.message);
+                        } else {
+                            console.log(user[item].id_section);
+                            if (this.dataAgents === null) {
+                                this.dataAgents = res.data.dataAgents
+                            } else{   
+                                this.dataAgents = this.dataAgents.concat(res.data.dataAgents)
+                                console.log("concatenation success..");
+                            }
+                            console.log("success 1...!", res.data.message);
+                        }
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }    
             }
+
 
         },
        
+
     },
 
 };
@@ -147,5 +176,6 @@ export default {
 .odd td,
 .even td {
     font-size: 14px;
-}</style>
+}
+</style>
   

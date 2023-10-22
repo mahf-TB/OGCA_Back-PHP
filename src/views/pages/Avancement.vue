@@ -14,17 +14,18 @@
         </div>
     </div>
    <div class="card p-3" >
-      <DataTable />
+      <DatatableAvenant />
    </div>
 </template>
 
 <script>
 import sousHeader from "@/components/sousHeader.vue";
-import DataTable from '@/views/datatables/Datatable.vue';
+// import Footer from "@/components/FootNav.vue";
+import DatatableAvenant from '@/views/datatables/DatatableAvenant.vue';
 export default {
    name: 'Avancement',
    components: {
-      DataTable,sousHeader
+    DatatableAvenant,sousHeader,
    }
 }
 </script>
