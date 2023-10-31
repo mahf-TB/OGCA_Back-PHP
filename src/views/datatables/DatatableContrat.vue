@@ -4,7 +4,7 @@
         <!--  Bfrtip -->
         <div class="mr-4 ml-4 mt-3 mb-3">
             <div class=" table-responsive">
-                <DataTable :data="dataAgents" :columns="columns"
+                <DataTable :data="getContrat" :columns="columns"
                     class="table table-hover table-striped table-bordered display" :options="{
                         responsive: false, autoWidth: false, dom: 'Blrftip', language: {
                             search: 'Recherche', zeroRecords: 'aucune donnée disponible',
@@ -51,7 +51,7 @@ DataTable.use(DataTableLib);
 DataTable.use(pdfmake);
 DataTable.use(ButtonsHtml5);
 
-import { accountService } from "@/_service";
+import { mapGetters } from "vuex";
 export default {
     components: {
         DataTable
@@ -91,65 +91,12 @@ export default {
                     className: 'btn btn-dark'
                 },
             ],
-
-
         };
     },
-    mounted() {
-        this.getAgents();
-
+    computed:{
+        ...mapGetters(['getContrat']),
     },
-    methods: {
-        async getAgents() {
-            const user = JSON.parse(localStorage.getItem("user-info"));
-
-            var donnee = new FormData();
-
-
-            if (user[0].role == 'ADMIN') {
-                donnee.append('role', user[0].role);
-                console.log(user);
-                try {
-                    const res = await accountService.allAgentsCONTRAT(donnee);
-                    if (res.data.error) {
-                        console.log("error 1...!", res.data.message);
-                    } else {
-                        console.log("success 1...!", res.data.message);
-                        this.dataAgents = res.data.dataAgents;
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-            } else {
-                for (let item = 0; item < user.length; item++) {
-                    donnee.append('role', user[item].role);
-                    donnee.append('section', user[item].id_section);
-
-                    try {
-                        const res = await accountService.allAgentsCONTRAT(donnee);
-                        if (res.data.error) {
-                            console.log("error 1...!", res.data.message);
-                        } else {
-                            console.log(user[item].id_section);
-                            if (this.dataAgents === null) {
-                                this.dataAgents = res.data.dataAgents
-                            } else{   
-                                this.dataAgents = this.dataAgents.concat(res.data.dataAgents)
-                                console.log("concatenation success..");
-                            }
-                            console.log("success 1...!", res.data.message);
-                        }
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }    
-            }
-
-
-        },
-       
-
-    },
+   
 
 };
 </script>

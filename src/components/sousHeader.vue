@@ -6,7 +6,7 @@
                     <div class="input-group" style="width: 300px;">
                         <input type="search" class="form-control" placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn" type="submit" id="button-addon2">RECHERCHE</button>
+                            <button class="btn" type="submit" id="button-addon2">{{ donnees }}</button>
                         </div>
                     </div>
                 </form>
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-export default{
-   name:'sousHeader',
-   data() {
-      return {
-        
-      }
-   },
+export default {
+    name: 'sousHeader',
+    data() {
+        return {
+            
+        }
+    },
 }
 </script>

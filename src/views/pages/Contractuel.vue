@@ -13,18 +13,21 @@
              </div>
          </div>
      </div>
-    <div class="card p-3" >
+    <div class="card p-3">
        <DatatableContrat />
     </div>
  </template>
  
  <script>
- import sousHeader from "@/components/sousHeader.vue";
  import DatatableContrat from '@/views/datatables/DatatableContrat.vue';
+import { mapGetters } from "vuex";
  export default {
     name: 'Contractuel',
     components: {
-        DatatableContrat,sousHeader
-    }
+        DatatableContrat,
+    },
+    computed:{
+        ...mapGetters(['getTitre']),
+    },
  }
  </script>

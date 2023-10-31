@@ -36,17 +36,20 @@ if ($action == 'login'){
         array_push($info ,$a);
       }
 
-      // selectioner les section que les user
-      $qry = "SELECT id_section, matricule, nom, prenom, role  FROM USER_SECTION , USERS WHERE id_user=matricule AND matricule='$matricule' AND password='$password';";
-      $res=$conn->query($qry);
-      $ligne = mysqli_num_rows($res);
-      if ($ligne > 0) {
-        $info = array();
-        while ($a = $res->fetch_array()) {
-          array_push($info ,$a);
-        }
-      }
 
+      // selectioner les section que les user
+      // $qry = "SELECT id_section, matricule, nom, prenom, role  FROM USER_SECTION , USERS WHERE id_user=matricule AND matricule='$matricule' AND password='$password';";
+      // $res=$conn->query($qry);
+      // $ligne = mysqli_num_rows($res);
+      // if ($ligne > 0) {
+      //   $info = array();
+      //   while ($a = $res->fetch_array()) {
+      //     array_push($info ,$a);
+      //   }
+      // }
+
+
+      
       $data['infoBD']=$info;
       $data['message']='vous etes connecter...';
     }else {

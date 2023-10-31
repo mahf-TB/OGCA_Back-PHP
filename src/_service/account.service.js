@@ -5,6 +5,7 @@ let onlogin = (dataFormat) => {
     return Axios.post('/api.php?action=login', dataFormat)
 }
 
+
 //axios pour recuperer tout liste user
 let onAllUser = () => {
     return Axios.get('/user.php?action=user')
@@ -20,16 +21,41 @@ let editUser = (donnees) => {
 }
 
 
-//axios pour  tout  AGENTS
-let allAgents = (donnees)=>{
-    return Axios.post('/agents.php?action=avenant', donnees)
+//axios pour  tout  AVENANTS
+let allAvenantComplet = (donnees)=>{
+    return Axios.post('/avenant.php?action=tout', donnees)
 }
-let allAgentsCONTRAT = (donnees)=>{
-    return Axios.post('/agents.php?action=contrat', donnees)
+let allAvenant6M = (donnees)=>{
+    return Axios.post('/avenant.php?action=sixM', donnees)
 }
-let allAgentsRETRAITE = (donnees)=>{
-    return Axios.post('/agents.php?action=retraite', donnees)
+let allAvenantTard = (donnees)=>{
+    return Axios.post('/avenant.php?action=tard', donnees)
 }
+
+
+//axios pour  tout  CONTRAT
+let allContratComplet = (donnees)=>{
+    return Axios.post('/contrat.php?action=tout', donnees)
+}
+let allContrat6M = (donnees)=>{
+    return Axios.post('/contrat.php?action=sixM', donnees)
+}
+let allContratTard = (donnees)=>{
+    return Axios.post('/contrat.php?action=tard', donnees)
+}
+
+
+//axios pour  tout  RETRAITE
+let allRetraite1A = (donnees)=>{
+    return Axios.post('/retraite.php?action=1ans', donnees)
+}
+let allRetraiteTard = (donnees)=>{
+    return Axios.post('/retraite.php?action=tard', donnees)
+}
+
+
+
+
 
 //axios pour  tout  SECTION
 let allSection = ()=>{
@@ -45,10 +71,13 @@ let addImport = (donnees)=>{
     return Axios.post('/importer.php?action=add', donnees)
 }
 
+
 export const accountService = {
     onlogin,
     onAllUser,setUser,deleteUser,editUser,
     allSection,setSection,
-    allAgents,allAgentsRETRAITE,allAgentsCONTRAT,
+    allAvenantComplet,allAvenant6M,allAvenantTard,
+    allContratComplet,allContrat6M,allContratTard,
+    allRetraite1A,allRetraiteTard,
     addImport,
 }

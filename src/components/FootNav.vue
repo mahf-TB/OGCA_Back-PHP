@@ -4,10 +4,7 @@
              <div class="xp-searchbar">
                  <form>
                      <div class="input-group" style="width: 300px;">
-                         <input type="search" class="form-control" placeholder="Search">
-                         <div class="input-group-append">
-                             <button class="btn" type="submit" id="button-addon2">RECHERCHE</button>
-                         </div>
+                         
                      </div>
                  </form>
              </div>

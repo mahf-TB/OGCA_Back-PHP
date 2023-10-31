@@ -97,7 +97,13 @@ export default {
             this.valid = res.data.error
           } else {
             console.log("success 1...!", res.data.message);
-            console.log("1...!", res.data.infoBD);
+
+
+            // const token =  btoa(res.data.infoBD);
+            // var valeur = atob(token);
+            // console.log(valeur);
+            // localStorage.setItem("token", token);
+            
             localStorage.setItem("user-info", JSON.stringify(res.data.infoBD))
             this.$router.push("/");
           }
