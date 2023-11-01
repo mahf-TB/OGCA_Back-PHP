@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar-header">
-        <h3 class="text-size"><img :src="require('@/assets/SRSP-LOGO.png')" height="40" alt="MDB Logo"
+        <h3 class="text-size"><img :src="require('@/assets/Ministère.png')" height="40" alt="MDB Logo"
                 loading="lazy" /><span>Avancement </span></h3>
     </div>
     <ul class="list-unstyled components">
@@ -76,7 +76,7 @@
 
 <script>
 
-import { mapGetters, mapActions } from "vuex";
+import {  mapActions } from "vuex";
 export default {
     name: 'HomePage',
     data() {
@@ -91,16 +91,7 @@ export default {
         this.nomConnecter = user[0].nom + ' ' + user[0].prenom;
         if (user[0].role == 'ADMIN') {
             this.ajouter = true;
-        }  
-
-        
-        this.actionAvenantTout()
-
-        this.actionContratTout()
-
-        this.actionRetraiteTard()
-      
-        
+        }          
     },
     methods:{
         ...mapActions([

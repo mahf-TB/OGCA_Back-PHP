@@ -52,8 +52,8 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
-          commit('setAvenant', res.data.dataAgents)
           commit('setTitle', 'Liste des tout les agents');
+          commit('setAvenant', res.data.dataAgents)
         }
       } catch (err) {
         console.log(err);
@@ -72,8 +72,8 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
-          commit('setAvenant', res.data.dataAgents);
           commit('setTitle', 'Liste des agents qui fait un avancement dans 6 mois');
+          commit('setAvenant', res.data.dataAgents);
         }
       } catch (err) {
         console.log(err);
@@ -92,9 +92,9 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
-          commit('setAvenant', res.data.dataAgents)
 
           commit('setTitle', 'Liste des agents qui sont tard sont avancement');
+          commit('setAvenant', res.data.dataAgents)
         }
       } catch (err) {
         console.log(err);
@@ -116,13 +116,17 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
-          commit('setContrat', res.data.dataAgents);
+
           commit('setTitle', 'Liste des tout les agents Contractuel');
+          commit('setContrat', res.data.dataAgents);
         }
       } catch (err) {
         console.log(err);
       }
     },
+
+
+
     async actionContrat6M({ commit }) {
       const user = JSON.parse(localStorage.getItem("user-info"));
       var donnee = new FormData();
@@ -136,8 +140,9 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
+
+          commit('setTitle', 'Liste des agents qui doit renouveller son contrat');
           commit('setContrat', res.data.dataAgents);
-          commit('setTitle', 'Liste des agents qui doit renouveller son contrat dans 6 mois');
         }
       } catch (err) {
         console.log(err);
@@ -156,8 +161,8 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
+          commit('setTitle', 'Liste des agents qui sont déja expirer contrat');
           commit('setContrat', res.data.dataAgents);
-          commit('setTitle', 'Liste des agents qui sont tard sont avancement');
         }
       } catch (err) {
         console.log(err);
@@ -179,6 +184,7 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
+          commit('setTitle', 'Liste des agents qui est sa retraite approche');
           commit('setRetraite', res.data.dataAgents)
         }
       } catch (err) {
@@ -198,6 +204,7 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
+          commit('setTitle', 'Liste des agents qui doit prendre sa retraite');
           commit('setRetraite', res.data.dataAgents)
         }
       } catch (err) {

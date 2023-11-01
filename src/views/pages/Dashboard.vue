@@ -16,9 +16,9 @@
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <a href="#" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/avancement" @click.prevent="actionAvenant6M()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></a>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
                         </div>
                     </div>
                 </div>
@@ -36,29 +36,9 @@
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <a href="#" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/avancement" @click.prevent="actionAvenantTard()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col ">
-                <div class="border border-info card-stats shadow">
-                    <div class="card-header pr-0">
-                        <div class="icon icon-info">
-                            <v-icon style="top: 0;" size="40">mdi-alpha-c-box</v-icon>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <p class="category">Contrat achevé.</p>
-                        <h5 class="card-title">70,340</h5>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="stats ">
-                            <a href="#" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
-                                Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></a>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
                         </div>
                     </div>
                 </div>
@@ -76,9 +56,29 @@
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <a href="#" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/contractuel" @click.prevent="actionContrat6M()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></a>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col ">
+                <div class="border border-info card-stats shadow">
+                    <div class="card-header pr-0">
+                        <div class="icon icon-info">
+                            <v-icon style="top: 0;" size="40">mdi-alpha-c-box</v-icon>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">Contrat achevé.</p>
+                        <h5 class="card-title">70,340</h5>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="stats ">
+                            <RouterLink to="/contractuel" @click.prevent="actionContratTard()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                                Voir tout
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
                         </div>
                     </div>
                 </div>
@@ -96,9 +96,9 @@
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <a href="#" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/retraite"   @click.prevent="actionRetraiteTard()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></a>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
                         </div>
                     </div>
                 </div>
@@ -115,6 +115,7 @@
 
 <script>
 
+import {  mapActions } from "vuex";
 import Graphe from "@/components/Graphe.vue";
 export default {
     name: 'DashBoard',
@@ -134,9 +135,13 @@ export default {
         } else {
             console.log('Aucun token trouvé dans localStorage.');
         }
-    },
-    methods: {
-
+    }, methods:{
+        ...mapActions([
+            'actionAvenantTout', 'actionAvenant6M', 'actionAvenantTard',
+            'actionContratTout', 'actionContrat6M', 'actionContratTard',
+            'actionRetraite1A', 'actionRetraiteTard',
+        ]),
+       
     }
 }
 </script>

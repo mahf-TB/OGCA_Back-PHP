@@ -20,7 +20,7 @@
                </div>
                <div class="col-md-6">
                   <div class="form-floating">
-                     <input type="text" class="form-control" style="text-transform: capitalize;" v-model="user.nom" id="floatingPassword"
+                     <input type="text" class="form-control" style="text-transform:capitalize;" v-model="user.nom" id="floatingPassword"
                         placeholder="Password">
                      <label for="floatingPassword">Nom</label>
                   </div>

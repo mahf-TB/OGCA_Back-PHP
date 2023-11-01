@@ -5,8 +5,8 @@
       <div class="row gx-lg-5 align-items-center mb-5">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
           <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-            Gestion des Notifications et des Rappels <br />
-            <span style="color: hsl(218, 81%, 75%)">pour la Gestion des Ressources Humaines</span>
+            Optimisation de la gestion <br>
+            <span style="color: hsl(218, 81%, 75%)"> de l'Evolution de carrière des agents</span>
           </h1>
           <p class="mb-2 opacity-70" style="color: hsl(218, 81%, 85%)">
             Cela met en avant l'aspect de suivi des employés, de la progression de carrière,
@@ -21,9 +21,8 @@
           <div class="card bg-glass">
 
             <div class="card-body px-4 py-4 px-md-4">
-              <div class="text-center">
-                <img :src="require('@/assets/Background.jpg')" style="width: 165px;" alt="logo">
-                <h6 class="mt-1 mb-4 pb-1">Rappel des Contractuel Avancement et Retraite</h6>
+              <div class="text-center mb-10">
+                <img :src="require('@/assets/Ministère.png')" style="width: 265px;" alt="logo">
               </div>
 
               <form @submit.prevent="login()">

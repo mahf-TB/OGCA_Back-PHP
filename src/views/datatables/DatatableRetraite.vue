@@ -15,6 +15,7 @@
                     }">
                     <thead class="table-success ">
                         <tr class="toto">
+                            <th class="fw-bolder" style="font-size: 14px;">ID</th>
                             <th class="fw-bolder" style="font-size: 14px;">MATRICULE</th>
                             <th class="fw-bolder" style="font-size: 14px;">NOMS</th>
                             <th class="fw-bolder" style="font-size: 14px;">STATUT</th>
@@ -62,6 +63,7 @@ export default {
             dataAgents: null,
             scrollX: true,
             columns: [
+                { data: 'ID' },
                 { data: 'AGENT_MATRICULE' },
                 { data: 'NOMS' },
                 { data: 'STATUT' },

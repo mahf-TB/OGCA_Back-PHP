@@ -373,7 +373,15 @@ a:focus {
 /*=======================================================
    main-content navbar-design end
    ===============================================*/
-
+.toUpper{
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin: 0;
+    font-weight: bolder;
+    margin-top: 5px;
+    color: #4a5263;
+    font-size: 20px;
+}
 
 
 /*=======================================================
