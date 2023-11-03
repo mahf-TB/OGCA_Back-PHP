@@ -6,7 +6,13 @@ export default createStore({
     dataAvenant: null,
     dataContrat: null,
     dataRetraite: null,
-    title:null
+    title:null,
+    rowAvenant1:null,
+    rowAvenant2:null,
+    rowContrat1:null,
+    rowContrat2:null,
+    rowRetraite1:null,
+    rowRetraite2:null,
   },
   getters: {
     getAvenant(state) {
@@ -20,11 +26,29 @@ export default createStore({
     },
     getTitre(state){
       return state.title
+    },
+    getRowA1(state){
+      return state.rowAvenant1
+    },
+    getRowA2(state){
+      return state.rowAvenant2
+    },
+    getRowC1(state){
+      return state.rowContrat1
+    },
+    getRowC2(state){
+      return state.rowContrat2
+    },
+    getRowR1(state){
+      return state.rowRetraite1
+    },
+    getRowR2(state){
+      return state.rowRetraite2
     }
   },
   mutations: {
     setAvenant(state, value) {
-      state.dataAvenant = value;
+      state.dataAvenant = value; 
     },
     setContrat(state, value) {
       state.dataContrat = value;
@@ -34,7 +58,33 @@ export default createStore({
     },
     setTitle(state, value) {
       state.title = value;
+    },
+
+    // count row for Avancement
+    setRowAvenant1(state, value){
+      state.rowAvenant1 = value;
+    },
+    setRowAvenant2(state, value){
+      state.rowAvenant2 = value;
+    },
+
+    // count row for Contractuel
+    setRowContrat1(state, value){
+      state.rowContrat1 = value;
+    }, 
+    setRowContrat2(state, value){
+      state.rowContrat2 = value;
+    },
+
+    // count row for Retraite
+    setRowRetraite1(state, value){
+      state.rowRetraite1 = value;
+    },
+    setRowRetraite2(state, value){
+      state.rowRetraite2 = value;
     }
+
+
   },
   actions: {
 
@@ -54,11 +104,13 @@ export default createStore({
           console.log("success 1...!", res.data.message);
           commit('setTitle', 'Liste des tout les agents');
           commit('setAvenant', res.data.dataAgents)
+          
         }
       } catch (err) {
         console.log(err);
       }
     },
+
     async actionAvenant6M({ commit }) {
       const user = JSON.parse(localStorage.getItem("user-info"));
       var donnee = new FormData();
@@ -72,8 +124,9 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
-          commit('setTitle', 'Liste des agents qui fait un avancement dans 6 mois');
+          commit('setTitle', 'Agents qui fait un avancement dans 6 mois');
           commit('setAvenant', res.data.dataAgents);
+          commit('setRowAvenant1', res.data.count);
         }
       } catch (err) {
         console.log(err);
@@ -93,8 +146,9 @@ export default createStore({
         } else {
           console.log("success 1...!", res.data.message);
 
-          commit('setTitle', 'Liste des agents qui sont tard sont avancement');
-          commit('setAvenant', res.data.dataAgents)
+          commit('setTitle', 'agents qui sont tard sont avancement');
+          commit('setAvenant', res.data.dataAgents);
+          commit('setRowAvenant2', res.data.count);
         }
       } catch (err) {
         console.log(err);
@@ -124,9 +178,6 @@ export default createStore({
         console.log(err);
       }
     },
-
-
-
     async actionContrat6M({ commit }) {
       const user = JSON.parse(localStorage.getItem("user-info"));
       var donnee = new FormData();
@@ -143,6 +194,7 @@ export default createStore({
 
           commit('setTitle', 'Liste des agents qui doit renouveller son contrat');
           commit('setContrat', res.data.dataAgents);
+          commit('setRowContrat1', res.data.count);
         }
       } catch (err) {
         console.log(err);
@@ -161,8 +213,9 @@ export default createStore({
           console.log("error 1...!", res.data.message);
         } else {
           console.log("success 1...!", res.data.message);
-          commit('setTitle', 'Liste des agents qui sont déja expirer contrat');
+          commit('setTitle', 'agents qui sont déja expirer son contrat');
           commit('setContrat', res.data.dataAgents);
+          commit('setRowContrat2', res.data.count);
         }
       } catch (err) {
         console.log(err);
@@ -185,7 +238,8 @@ export default createStore({
         } else {
           console.log("success 1...!", res.data.message);
           commit('setTitle', 'Liste des agents qui est sa retraite approche');
-          commit('setRetraite', res.data.dataAgents)
+          commit('setRetraite', res.data.dataAgents);
+          commit('setRowRetraite1', res.data.count);
         }
       } catch (err) {
         console.log(err);
@@ -205,7 +259,8 @@ export default createStore({
         } else {
           console.log("success 1...!", res.data.message);
           commit('setTitle', 'Liste des agents qui doit prendre sa retraite');
-          commit('setRetraite', res.data.dataAgents)
+          commit('setRetraite', res.data.dataAgents);
+          commit('setRowRetraite2', res.data.count);
         }
       } catch (err) {
         console.log(err);

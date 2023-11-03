@@ -29,8 +29,6 @@ if ($action == 'tout') {
         $sql = "SELECT A.ID,AGENT_MATRICULE,CONCAT(nom,' ', prenom) as NOMS,STATUT,AVANCE_DATE as DERNIER_AVANCEMENT,CORPS_CODE, GRADE_CODE, POSTE_AGENT_DATE_DEBUT_CONTRAT as PROCHAIN_AVANCEMENT, REG_CODE,SECTION_CODE, SOA 
         FROM AGENTS A JOIN USER_SECTION US on A.SECTION_CODE = US.id_section WHERE US.id_user='$matricule';";
     }
-
-    // $sql = "SELECT * FROM `MINISTERE`;";
     $resultat = $conn->query($sql);
     $info = array();
     while ($a = $resultat->fetch_array()) {
@@ -38,7 +36,7 @@ if ($action == 'tout') {
     }
     $row = mysqli_num_rows($resultat);
     if ($row > 0) {
-
+        $data['count']= $row;
         $data['dataAgents'] = $info;
         $data['message'] = 'Success...! les données sont recuperés';
     } else {
@@ -69,7 +67,7 @@ if ($action == 'sixM') {
     }
     $row = mysqli_num_rows($resultat);
     if ($row > 0) {
-
+        $data['count']= $row;
         $data['dataAgents'] = $info;
         $data['message'] = 'Success...! les données sont recuperés';
     } else {
@@ -100,7 +98,7 @@ if ($action == 'tard') {
     }
     $row = mysqli_num_rows($resultat);
     if ($row > 0) {
-
+        $data['count']= $row;
         $data['dataAgents'] = $info;
         $data['message'] = 'Success...! les données sont recuperés';
     } else {

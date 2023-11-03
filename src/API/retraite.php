@@ -37,7 +37,7 @@ if ($action == '1ans') {
     }
     $row = mysqli_num_rows($resultat);
     if ($row > 0) {
-
+        $data['count']= $row;
         $data['dataAgents'] = $info;
         $data['message'] = 'Success...! les données sont recuperés';
     } else {
@@ -67,7 +67,7 @@ if ($action == 'tard') {
     }
     $row = mysqli_num_rows($resultat);
     if ($row > 0) {
-
+        $data['count']= $row;
         $data['dataAgents'] = $info;
         $data['message'] = 'Success...! les données sont recuperés';
     } else {

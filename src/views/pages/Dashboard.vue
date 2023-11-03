@@ -12,13 +12,15 @@
                     </div>
                     <div class="card-content">
                         <p class="category">Avenant bientôt.</p>
-                        <h5 class="card-title">70,340</h5>
+                        <h5 class="card-title">{{ getRowA1 }} Agents</h5>
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <RouterLink to="/avancement" @click.prevent="actionAvenant6M()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/avancement" @click.prevent="actionAvenant6M()"
+                                class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -32,13 +34,15 @@
                     </div>
                     <div class="card-content">
                         <p class="category"> expirant bientôt.</p>
-                        <h5 class="card-title">70,340</h5>
+                        <h5 class="card-title">{{ getRowA2 }} Agents</h5>
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <RouterLink to="/avancement" @click.prevent="actionAvenantTard()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/avancement" @click.prevent="actionAvenantTard()"
+                                class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -52,13 +56,15 @@
                     </div>
                     <div class="card-content">
                         <p class="category">Bientôt expirant.</p>
-                        <h5 class="card-title">70,340</h5>
+                        <h5 class="card-title">{{ getRowC1 }} Agents</h5>
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <RouterLink to="/contractuel" @click.prevent="actionContrat6M()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/contractuel" @click.prevent="actionContrat6M()"
+                                class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -72,13 +78,15 @@
                     </div>
                     <div class="card-content">
                         <p class="category">Contrat achevé.</p>
-                        <h5 class="card-title">70,340</h5>
+                        <h5 class="card-title">{{ getRowC2 }} Agents</h5>
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <RouterLink to="/contractuel" @click.prevent="actionContratTard()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/contractuel" @click.prevent="actionContratTard()"
+                                class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -92,13 +100,15 @@
                     </div>
                     <div class="card-content">
                         <p class="category"> expirant bientôt.</p>
-                        <h5 class="card-title">70,340</h5>
+                        <h5 class="card-title">{{ getRowR1 }} Agents</h5>
                     </div>
                     <div class="card-footer ">
                         <div class="stats ">
-                            <RouterLink to="/retraite"   @click.prevent="actionRetraiteTard()" class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
+                            <RouterLink to="/retraite" @click.prevent="actionRetraiteTard()"
+                                class="text-black nav-link  d-flex justify-content-between align-items-center p-0">
                                 Voir tout
-                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon></RouterLink>
+                                <v-icon style="top: 0;" size="30">mdi-chevron-right</v-icon>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -108,40 +118,37 @@
         </div>
     </div>
 
-   <Graphe />
-
-    
+    <Graphe />
 </template>
 
 <script>
 
-import {  mapActions } from "vuex";
+import { mapActions , mapGetters} from "vuex";
 import Graphe from "@/components/Graphe.vue";
 export default {
     name: 'DashBoard',
-    components:{
+    components: {
         Graphe,
-    },
+    }, 
     mounted() {
-        const token = localStorage.getItem('token');
+        this.actionAvenant6M();
+        this.actionAvenantTard();
+        this.actionContrat6M();
+        this.actionContratTard();
+        this.actionRetraite1A();
+        this.actionRetraiteTard();
+    },
+    computed: {
+        ...mapGetters(['getRowA1', 'getRowA2','getRowC1', 'getRowC2', 'getRowR1', 'getRowR2'])
+    },
 
-        if (token) {
-            try {
-                const decodedToken = atob(token);
-                console.log('Valeur du token décrypté :', decodedToken);
-            } catch (error) {
-                console.error('Erreur lors du décodage du token :', error);
-            }
-        } else {
-            console.log('Aucun token trouvé dans localStorage.');
-        }
-    }, methods:{
+    methods: {
         ...mapActions([
             'actionAvenantTout', 'actionAvenant6M', 'actionAvenantTard',
             'actionContratTout', 'actionContrat6M', 'actionContratTard',
             'actionRetraite1A', 'actionRetraiteTard',
         ]),
-       
+
     }
 }
 </script>
@@ -153,5 +160,4 @@ export default {
 
 .coll {
     width: 200px;
-}
-</style>
+}</style>
