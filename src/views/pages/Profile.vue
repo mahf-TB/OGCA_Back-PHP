@@ -1,151 +1,83 @@
 <template>
-     <div class="card mt-0  p-3">
-         <div class="col-md-5 col-lg-3 order-3 order-md-2">
-             <div class="xp-searchbar">
-                 <form>
-                     <div class="input-group" style="width: 300px;">
-                         <input type="search" class="form-control" placeholder="Search">
-                         <div class="input-group-append">
-                             <button class="btn" type="submit" id="button-addon2">RECHERCHE</button>
-                         </div>
-                     </div>
-                 </form>
-             </div>
-         </div>
-     </div>
-    <section style="background-color: #eee;" class="mb-11">
-        <div class="container py-2">         
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card mb-4">
-                        <div class="card-body text-center">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                            <h5 class="my-3">John Smith</h5>
-                            <p class="text-muted mb-1">Full Stack Developer</p>
-                            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-primary">Follow</button>
-                                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+    <section class="h-100 gradient-custom-2">
+        <div class="container p-0 h-100 ">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-9 col-xl-7">
+                    <div class="card">
+                        <div class="rounded-top text-white d-flex flex-row"
+                            style="background-color: #0f8364; height:200px;">
+                            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                                <img :src="require('@/assets/logo.png')" alt="Generic placeholder image"
+                                    class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+
+                                    <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" data-toggle="modal" data-target="#exampleModalCenter"
+                                    style="z-index: 1;">
+                                    Edit profile
+                                </button>
+                                <!-- Modal EditProfile -->
+                                <EditProfile/>
+                            </div>
+                            <div class="ms-3" style="margin-top: 130px;">
+                                <h5>{{ user.nom }} {{ user.prenom }}</h5>
+                                <p>{{ user.role }}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-4 mb-lg-0">
-                        <div class="card-body p-0">
-                            <ul class="list-group list-group-flush rounded-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fas fa-globe fa-lg text-warning"></i>
-                                    <p class="mb-0">https://mdbootstrap.com</p>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                    <p class="mb-0">mdbootstrap</p>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                    <p class="mb-0">@mdbootstrap</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="card mb-4" >
-                        <div class="card-body" style="border-radius: 15px;">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Matricule</p>
+                        <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                            <div class="d-flex justify-content-end text-center py-1">
+                                <div>
+                                    <p class="mb-1 h5">253</p>
+                                    <p class="small text-muted mb-0">Photos</p>
                                 </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Johnatan Smith</p>
+                                <div class="px-3">
+                                    <p class="mb-1 h5">1026</p>
+                                    <p class="small text-muted mb-0">Followers</p>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Nom</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">example@example.com</p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Prenom</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">(097) 234-5678</p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Rôle</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">(098) 765-4321</p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Address</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                <div>
+                                    <p class="mb-1 h5">478</p>
+                                    <p class="small text-muted mb-0">Following</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project
-                                        Status
-                                    </p>
-                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="card-body pt-2 pb-2 pl-4 pr-4 text-black">
+                            <div class="mb-5">
+                                <div class=" pt-2 pb-2 pl-4 pr-4" style="background-color: #f8f9fa;">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">MATRICULE</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">{{ user.matricule }}</p>
+                                        </div>
                                     </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">NOM</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">{{ user.nom }}</p>
+                                        </div>
                                     </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">PRENOM</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">{{ user.prenom }} </p>
+                                        </div>
                                     </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project
-                                        Status
-                                    </p>
-                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">RÔLE</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"> {{ user.role }}</p>
+                                        </div>
                                     </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                   
+                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -153,19 +85,58 @@
                 </div>
             </div>
         </div>
+
     </section>
-   
 </template>
 
 <script>
-
-export default{
+import EditProfile from "@/components/EditProfile.vue";
+import { accountService } from "@/_service";
+export default {
     name: 'Profile',
-    data(){
-        return{
-           
+    components:{
+        EditProfile
+    },
+    data() {
+        return {
+            user: {
+                matricule: '',
+                nom: '',
+                prenom: '',
+                role: '',
+            },
         }
+    },
+    mounted(){
+        this.getUserInfo();
+    },
+    methods:{
+        async getUserInfo(){
+            const user = JSON.parse(localStorage.getItem("user-info"));
+            var donnee = new FormData();
+            donnee.append('matricule', user[0].matricule);
+
+            try {
+                const res = await accountService.getUserEdit(donnee);
+                if (res.data.error) {
+                    console.log("error 1...!", res.data.message);
+                } else {
+                    console.log("success 1...!", res.data.message);
+                    var userDB = res.data.infoBD;
+                    
+                    this.user.matricule = userDB[0].matricule;
+                    this.user.nom = userDB[0].nom;
+                    this.user.prenom = userDB[0].prenom;
+                    this.user.role = userDB[0].role;
+
+                    this.motdepasse = userDB[0].password;
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        },
     }
 }
 
 </script>
+<style></style>

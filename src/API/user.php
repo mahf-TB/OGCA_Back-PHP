@@ -41,7 +41,6 @@ if ($action == 'user') {
 }
 
 if ($action == 'add') {
-
   $matricule = $_POST['matricule'];
   $nom = $_POST['nom'];
   $prenom = $_POST['prenom'];

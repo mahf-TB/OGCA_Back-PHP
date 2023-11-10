@@ -8,7 +8,7 @@
             <HeaderBar class="shadow" />
             <div class="main-content vh-100 pt-0 p-0 mb-0">
                 <router-view />
-                <FooterBar />
+              
             </div>
             
         </div>

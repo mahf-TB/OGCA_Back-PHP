@@ -1,8 +1,8 @@
 <template>
   <!-- Section: Design Block -->
-  <section class="background-radial-gradient overflow-hidden">
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5 vh-100">
-      <div class="row gx-lg-5 align-items-center mb-5">
+  <section class="background-radial-gradient overflow-hidden  pt-13" style="padding-bottom: 150px;">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-10">
+      <div class="row gx-lg-5 align-items-center mt-3">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
           <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
             Optimisation de la gestion <br>
@@ -30,7 +30,7 @@
                 <div class="col-12">
                   <div class="form-floating mb-4">
                     <input type="text" class="form-control " :class="{ 'is-invalid': this.valid }" id="floatingInput"
-                      placeholder="name@example.com" v-model="matricule">
+                      placeholder="Votre matricule" v-model="matricule">
                     <label for="floatingInput" class="d-flex align-items-start" style="color: rgb(126, 128, 129);">
                       <v-icon class="mr-3">mdi-account</v-icon> Matricule or Username</label>
                     <div class="invalid-feedback">Verifiez votre matricule si correct! </div>
@@ -38,8 +38,8 @@
                 </div>
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" :class="{ 'is-invalid': this.valid }"
-                      id="floatingPassword" placeholder="Password" v-model="password">
+                    <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
+                      id="floatingPassword" placeholder="Votre mot de passe" v-model="password">
                     <label for="floatingPassword" class="d-flex justify-content-between  align-items-start"
                       style="color: rgb(126, 128, 129);">
                       <v-icon class="mr-3">mdi-key</v-icon> Mot de passe</label>
@@ -96,12 +96,6 @@ export default {
             this.valid = res.data.error
           } else {
             console.log("success 1...!", res.data.message);
-
-
-            // const token =  btoa(res.data.infoBD);
-            // var valeur = atob(token);
-            // console.log(valeur);
-            // localStorage.setItem("token", token);
             
             localStorage.setItem("user-info", JSON.stringify(res.data.infoBD))
             this.$router.push("/");

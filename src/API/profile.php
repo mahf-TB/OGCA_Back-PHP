@@ -17,27 +17,28 @@ if (isset($_GET['action'])) {
   $action = $_GET['action'];
 }
 
-if ($action == 'login') {
+
+if ($action == 'user') {
 
   $matricule = $_POST['matricule'];
-  $password = $_POST['password'];
-  $sql = "select matricule,nom,prenom,role from USERS where matricule ='$matricule' AND password='$password';";
-
+  
+  $sql = "select * from USERS where matricule ='$matricule';";
+  
   $resultat = $conn->query($sql);
   $info = array();
+  
+  while ($a = $resultat->fetch_array()) {
+      array_push($info, $a);
+  }
+
   $row = mysqli_num_rows($resultat);
   if ($row > 0) {
-    while ($a = $resultat->fetch_array()) {
-      array_push($info, $a);
-    }
-
-
     $data['infoBD'] = $info;
-    $data['message'] = 'vous etes connecter...';
+    $data['message'] = 'Success...! les données sont recuperés';
   } else {
     # code...
     $data['error'] = true;
-    $data['message'] = 'votre matricule ou mot de passe sont incorrect';
+    $data['message'] = 'Failed...! les Ddonnées sont pas recuperés';
   }
 }
 

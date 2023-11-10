@@ -1,6 +1,6 @@
 <template>
-   <sousHeader />
-   <div class="card " >
+   
+   <div class="card" >
       <div class="col-md-12">
          <div class="table-wrapper">
             <div class="table-title mb-3">

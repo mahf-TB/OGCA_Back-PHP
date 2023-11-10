@@ -2,38 +2,41 @@
     <div class="card mt-0  p-3">
         <div class="row g-5">
             <div class="col-md-6">
-            <h4 class="toUpper">{{ getTitre }}</h4>
-        </div>
-         <div class="col-md-6">
-             <div class="xp-searchbar">
-                 <form>
-                    <div class="input-group" style="width:100%;">
+                <h4 class="toUpper">{{ getTitre }}</h4>
+            </div>
+            <div class="col-md-6">
+                <div class="xp-searchbar">
+                    <form>
+                        <div class="input-group" style="width:100%;">
                             <input type="date" class="form-control" placeholder="Date Debut">
                             <input type="date" class="form-control" placeholder="Date Fin">
                             <div class="input-group-append">
                                 <button class="btn" type="submit" id="button-addon2">RECHERCHE</button>
                             </div>
                         </div>
-                 </form>
-             </div>
-         </div>
+                    </form>
+                </div>
+            </div>
         </div>
-     </div>
-    <div class="card p-3">
-       <DatatableContrat />
     </div>
- </template>
+
+    <div class="container-xxl">
+        <div class="card p-3">
+            <DatatableContrat />
+        </div>
+    </div>
+</template>
  
- <script>
- import DatatableContrat from '@/views/datatables/DatatableContrat.vue';
+<script>
+import DatatableContrat from '@/views/datatables/DatatableContrat.vue';
 import { mapGetters } from "vuex";
- export default {
+export default {
     name: 'Contractuel',
     components: {
         DatatableContrat,
     },
-    computed:{
+    computed: {
         ...mapGetters(['getTitre']),
     },
- }
- </script>
+}
+</script>

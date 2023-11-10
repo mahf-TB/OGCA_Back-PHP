@@ -18,24 +18,27 @@
                 </div>
             </div>
         </div>
-     </div>
-    <div class="card p-3" >
-       <DatatableRetraite />
     </div>
- </template>
+
+    <div class="container-xxl">
+        <div class="card p-3">
+            <DatatableRetraite />
+        </div>
+    </div>
+</template>
  
- <script>
+<script>
 
 import { mapGetters } from "vuex";
- import sousHeader from "@/components/sousHeader.vue";
- import DatatableRetraite from '@/views/datatables/DatatableRetraite.vue';
- export default {
+import sousHeader from "@/components/sousHeader.vue";
+import DatatableRetraite from '@/views/datatables/DatatableRetraite.vue';
+export default {
     name: 'Retraite',
     components: {
-        DatatableRetraite,sousHeader
+        DatatableRetraite, sousHeader
     },
     computed: {
         ...mapGetters(['getTitre']),
     },
- }
- </script>
+}
+</script>

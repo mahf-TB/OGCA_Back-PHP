@@ -19,8 +19,10 @@
             </div>
         </div>
     </div>
-    <div class="card p-3">
-        <DatatableAvenant />
+    <div class="container-xxl">
+        <div class="card p-3">
+            <DatatableAvenant />
+        </div>
     </div>
 </template>
 

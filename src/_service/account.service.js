@@ -65,6 +65,13 @@ let setSection = (donnees)=>{
     return Axios.post('/user.php?action=addSec', donnees)
 }
 
+//axios pour  tout  Profile User
+let getUserEdit = (donnees)=>{
+    return Axios.post('/profile.php?action=user', donnees)
+}
+let setUserEdit = (donnees)=>{
+    return Axios.post('/profile.php?action=edit', donnees)
+}
 
 //axios pour  tout  IMPORTER
 let addImport = (donnees)=>{
@@ -79,5 +86,5 @@ export const accountService = {
     allAvenantComplet,allAvenant6M,allAvenantTard,
     allContratComplet,allContrat6M,allContratTard,
     allRetraite1A,allRetraiteTard,
-    addImport,
+    addImport,getUserEdit,setUserEdit
 }
