@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="container-xxl">
+    <div class="container-fluid">
         <div class="card p-3">
             <DatatableContrat />
         </div>

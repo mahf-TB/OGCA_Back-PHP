@@ -1,78 +1,76 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade text-dark" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade text-dark" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="exampleModalLongTitle">INFORMATION DE L'UTILISATEUR</h5>
+                    <h2 class="modal-title text-dark" id="exampleModalLongTitle">INFORMATION DE L'UTILISATEUR</h2>
+
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form class="row g-3">
-                            <!-- matricule -->
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" v-model="user.matricule" id="floatingInput"
-                                        placeholder="votre matricule">
-                                    <label for="floatingInput"> Matricule</label>
-                                </div>
+                        <!-- matricule -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" v-model="user.matricule" id="floatingInput"
+                                    placeholder="votre matricule">
+                                <label for="floatingInput"> Matricule</label>
                             </div>
-                             <!-- mot de passe ancienne -->
-                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
-                                        v-model="motdepasse.ancien" id="floatingInput" placeholder="mot de passe securisé">
-                                    <label for="floatingInput">Ancien mot de passe</label>
-                                    <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
-                                </div>
+                        </div>
+                        <!-- mot de passe ancienne -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" :class="{ 'is-invalid': this.validAncien }"
+                                    v-model="motdepasse.ancien" id="floatingInput" placeholder="mot de passe securisé">
+                                <label for="floatingInput">Ancien mot de passe</label>
+                                <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
                             </div>
-                            <!-- nom -->
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" style="text-transform:capitalize;"
-                                        v-model="user.nom" id="floatingPassword" placeholder="votre nom">
-                                    <label for="floatingPassword">Nom</label>
-                                </div>
+                        </div>
+                        <!-- nom -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" style="text-transform:capitalize;"
+                                    v-model="user.nom" id="floatingPassword" placeholder="votre nom">
+                                <label for="floatingPassword">Nom</label>
                             </div>
-                            <!-- mot de passe nouvelle -->
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
-                                        v-model="motdepasse.nouveaux" id="floatingInput"
-                                        placeholder="mot de passe securisé">
-                                    <label for="floatingInput">Nouveaux mot de passe</label>
-                                    <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
-                                </div>
-                            </div>
-                            <!-- prenom -->
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" v-model.trim="user.prenom" id="floatingInput"
-                                        placeholder="votre prenom">
-                                    <label for="floatingInput">Prenom</label>
-                                </div>
-                            </div>
+                        </div>
 
-                            
-                           
-                            <!-- mot de passe de comfirmation -->
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
-                                        v-model="motdepasse.confirme" id="floatingInput"
-                                        placeholder="mot de passe securisé">
-                                    <label for="floatingInput">Confirmation mot de passe</label>
-                                    <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
-                                </div>
+                        <!-- mot de passe nouvelle -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
+                                    v-model="motdepasse.nouveaux" id="floatingInput" placeholder="mot de passe securisé">
+                                <label for="floatingInput">Nouveaux mot de passe</label>
+                                <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
                             </div>
+                        </div>
+                        <!-- prenom -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" v-model.trim="user.prenom" id="floatingInput"
+                                    placeholder="votre prenom">
+                                <label for="floatingInput">Prenom</label>
+                            </div>
+                        </div>
+                        <!-- mot de passe de comfirmation -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
+                                    v-model="motdepasse.confirme" id="floatingInput" placeholder="mot de passe securisé">
+                                <label for="floatingInput">Confirmation mot de passe</label>
+                                <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                    <button type="button" @click.prevent="enregistrer()" class="btn btn-success">Enregistrer</button>
+                    <button type="button" @click.prevent="enregistrer()" class="btn btn-success"
+                        :data-dismiss="close">Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -82,73 +80,94 @@
 <script>
 
 import { accountService } from "@/_service";
+import $ from 'jquery';
 export default {
     name: 'EditProfile',
+    props: {
+        dataInfo: Object,
+    },
     data() {
         return {
             user: {
                 matricule: '',
                 nom: '',
                 prenom: '',
-                role: '',
+                password: '',
             },
-            password: '',
-
             motdepasse: {
                 ancien: '',
                 nouveaux: '',
                 confirme: ''
-
             },
             valid: false,
+            validAncien: false,
+            close: ''
         }
     },
     mounted() {
-        this.getUserInfo();
     },
     methods: {
-        async getUserInfo() {
-            const user = JSON.parse(localStorage.getItem("user-info"));
-            var donnee = new FormData();
-            donnee.append('matricule', user[0].matricule);
-
-            try {
-                const res = await accountService.getUserEdit(donnee);
-                if (res.data.error) {
-                    console.log("error 1...!", res.data.message);
-                } else {
-                    console.log("success 1...!", res.data.message);
-                    var userDB = res.data.infoBD;
-
-                    this.user.matricule = userDB[0].matricule;
-                    this.user.nom = userDB[0].nom;
-                    this.user.prenom = userDB[0].prenom;
-                    this.user.role = userDB[0].role;
-
-                    this.password = userDB[0].password;
-                }
-            } catch (err) {
-                console.log(err);
+        async openModal() {
+            $('#modalCenter').modal('show');
+            if (this.dataInfo) {
+                this.user = {
+                    matricule: this.dataInfo.matricule,
+                    nom: this.dataInfo.nom,
+                    prenom: this.dataInfo.prenom,
+                    password: this.dataInfo.motdepasse,
+                };
+                console.log(this.user)
             }
         },
         async enregistrer() {
-            const user = JSON.parse(localStorage.getItem("user-info"));
+            const users = JSON.parse(localStorage.getItem("user-info"));
             var donnee = new FormData();
 
-            donnee.append('role', user[0].role);
-            donnee.append('matricule', user[0].matricule);
-
-            try {
-                const res = await accountService.setUserEdit(donnee);
-                if (res.data.error) {
-                    console.log("error 1...!", res.data.message);
-                } else {
-                    console.log("success 1...!", res.data.infoBD);
-
+            if (this.motdepasse.ancien == '' && this.motdepasse.nouveaux == '' && this.motdepasse.confirme == '') {
+                donnee.append('id_mat', users[0].matricule);
+                donnee.append('matricule', this.user.matricule);
+                donnee.append('nom', this.user.nom);
+                donnee.append('prenom', this.user.prenom);
+                try {
+                    const res = await accountService.setUserEdit(donnee);
+                    if (res.data.error) {
+                        console.log("error 1...!", res.data.message);
+                    } else {
+                        this.close = 'modal';
+                        console.log("success 11...!", res.data.message);
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
-            } catch (err) {
-                console.log(err);
+            } else {
+                donnee.append('id_mat', users[0].matricule);
+                donnee.append('matricule', this.user.matricule);
+                donnee.append('nom', this.user.nom);
+                donnee.append('prenom', this.user.prenom);
+                donnee.append('password', this.motdepasse.nouveaux);
+                if (this.motdepasse.ancien == this.user.password) {
+                    if (this.motdepasse.nouveaux == this.motdepasse.confirme) {
+                        try {
+                            const res = await accountService.setUserEdit(donnee);
+                            if (res.data.error) {
+                                console.log("error 1...!", res.data.message);
+                            } else {
+                                this.close = 'modal';
+                                console.log("success 11...!", res.data.message);
+                            }
+                        } catch (err) {
+                            console.log(err);
+                        }
+                    } else {
+                        this.valid = true;
+                        this.validAncien = false;
+                    }
+                } else {
+                    this.validAncien = true;
+                }
+
             }
+
         }
     }
 }

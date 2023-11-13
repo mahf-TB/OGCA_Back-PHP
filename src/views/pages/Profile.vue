@@ -7,20 +7,18 @@
                         <div class="rounded-top text-white d-flex flex-row"
                             style="background-color: #0f8364; height:200px;">
                             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                                <img :src="require('@/assets/logo.png')" alt="Generic placeholder image"
+                                <img :src="require('@/assets/pdp-avatar.jpeg')" alt="Generic placeholder image"
                                     class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
 
                                     <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" data-toggle="modal" data-target="#exampleModalCenter"
+                                <button type="button" class="btn btn-outline-dark" @click.prevent="showModal()"
                                     style="z-index: 1;">
                                     Edit profile
                                 </button>
-                                <!-- Modal EditProfile -->
-                                <EditProfile/>
                             </div>
                             <div class="ms-3" style="margin-top: 130px;">
-                                <h5>{{ user.nom }} {{ user.prenom }}</h5>
-                                <p>{{ user.role }}</p>
+                                <h5>{{ users.nom }} {{ users.prenom }}</h5>
+                                <p>{{ users.role }}</p>
                             </div>
                         </div>
                         <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -47,7 +45,7 @@
                                             <p class="mb-0">MATRICULE</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ user.matricule }}</p>
+                                            <p class="text-muted mb-0">{{ users.matricule }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -56,7 +54,7 @@
                                             <p class="mb-0">NOM</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ user.nom }}</p>
+                                            <p class="text-muted mb-0">{{ users.nom }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -65,7 +63,7 @@
                                             <p class="mb-0">PRENOM</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ user.prenom }} </p>
+                                            <p class="text-muted mb-0">{{ users.prenom }} </p>
                                         </div>
                                     </div>
                                     <hr>
@@ -74,7 +72,7 @@
                                             <p class="mb-0">RÔLE</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"> {{ user.role }}</p>
+                                            <p class="text-muted mb-0"> {{ users.role }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -86,10 +84,15 @@
             </div>
         </div>
 
+                           
+                                <!-- Modal EditProfile -->
+        <EditProfile ref="ModalRef" :dataInfo="users"/>     
     </section>
 </template>
 
 <script>
+import { onMounted, ref, nextTick } from 'vue';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import EditProfile from "@/components/EditProfile.vue";
 import { accountService } from "@/_service";
 export default {
@@ -99,11 +102,12 @@ export default {
     },
     data() {
         return {
-            user: {
+            users: {
                 matricule: '',
                 nom: '',
                 prenom: '',
                 role: '',
+                motdepasse:''
             },
         }
     },
@@ -112,30 +116,56 @@ export default {
     },
     methods:{
         async getUserInfo(){
+
             const user = JSON.parse(localStorage.getItem("user-info"));
             var donnee = new FormData();
             donnee.append('matricule', user[0].matricule);
-
             try {
                 const res = await accountService.getUserEdit(donnee);
                 if (res.data.error) {
                     console.log("error 1...!", res.data.message);
                 } else {
-                    console.log("success 1...!", res.data.message);
-                    var userDB = res.data.infoBD;
-                    
-                    this.user.matricule = userDB[0].matricule;
-                    this.user.nom = userDB[0].nom;
-                    this.user.prenom = userDB[0].prenom;
-                    this.user.role = userDB[0].role;
+                    console.log("success 1...!", res.data.message); 
 
-                    this.motdepasse = userDB[0].password;
+                    var userDB = res.data.infoBD;
+
+                    this.users.matricule = userDB[0].matricule;
+                    this.users.nom = userDB[0].nom;
+                    this.users.prenom = userDB[0].prenom;
+                    this.users.role = userDB[0].role;
+                    this.users.motdepasse = userDB[0].password;
                 }
             } catch (err) {
                 console.log(err);
             }
         },
-    }
+
+        // async showModal(){
+        //     this.userInfo = this.users;
+        //     await nextTick(); // Attendre que Vue mette à jour les données
+        //     this.ModalRef.openModal();
+        // }
+    },
+     setup() {
+    let myModal;
+    let userInfo = ref(null);
+
+    onMounted(() => {
+      myModal = new bootstrap.Modal(document.getElementById('modalCenter'));
+    });
+
+    const ModalRef = ref(null);
+    const showModal = async () => {
+      await nextTick(); // Attendre que Vue mette à jour les données
+      ModalRef.value.openModal();
+    };
+
+    return {
+      ModalRef,
+      showModal,
+      userInfo,
+    };
+  },
 }
 
 </script>

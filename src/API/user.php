@@ -46,8 +46,9 @@ if ($action == 'add') {
   $prenom = $_POST['prenom'];
   $password = $_POST['password'];
   $role = $_POST['role'];
-
-  $sql = "INSERT INTO `USERS` ( `matricule`, `nom`, `prenom`, `password`, `role`) VALUES ( '$matricule', '$nom', '$prenom', '$password', '$role');";
+  
+  $passHash = password_hash($password, PASSWORD_ARGON2ID);
+  $sql = "INSERT INTO `USERS` ( `matricule`, `nom`, `prenom`, `password`, `role`) VALUES ( '$matricule', '$nom', '$prenom', '$passHash', '$role');";
 
   if ($conn->query($sql) == true) {
     $data['message'] = 'Success...! les données sont enregistrer';

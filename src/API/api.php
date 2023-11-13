@@ -30,8 +30,7 @@ if ($action == 'login') {
     while ($a = $resultat->fetch_array()) {
       array_push($info, $a);
     }
-
-
+    
     $data['infoBD'] = $info;
     $data['message'] = 'vous etes connecter...';
   } else {

@@ -42,6 +42,28 @@ if ($action == 'user') {
   }
 }
 
+if ($action == 'edit') {
+
+  $id = $_POST['id_mat'];
+  $matricule = $_POST['matricule'];
+  $nom = $_POST['nom'];
+  $prenom = $_POST['prenom'];
+  $password = $_POST['password'];
+if ($password == '') {
+  $sql = "UPDATE `USERS` SET `matricule`='$matricule', `nom`='$nom',`prenom`='$prenom' WHERE matricule='$id';";
+}else {
+  $sql = "UPDATE `USERS` SET `matricule`='$matricule', `nom`='$nom',`prenom`='$prenom',`password`='$password'  WHERE matricule='$id';";
+}
+
+  if ($conn->query($sql) == true) {
+    $data['message'] = 'Success...! les données sont modifier';
+  } else {
+    # code...
+    $data['error'] = true;
+    $data['message'] = 'Failed...! les données sont pas modifier';
+  }
+}
+
 $conn->close();
 echo json_encode($data);
 die();
