@@ -86,7 +86,7 @@
 
                            
                                 <!-- Modal EditProfile -->
-        <EditProfile ref="ModalRef" :dataInfo="users"/>     
+        <EditProfile ref="ModalRef" :dataInfo="users" :getUserInfo="getUserInfo"/>     
     </section>
 </template>
 
@@ -140,11 +140,6 @@ export default {
             }
         },
 
-        // async showModal(){
-        //     this.userInfo = this.users;
-        //     await nextTick(); // Attendre que Vue mette à jour les données
-        //     this.ModalRef.openModal();
-        // }
     },
      setup() {
     let myModal;

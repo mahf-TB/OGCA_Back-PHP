@@ -85,6 +85,7 @@ export default {
     name: 'EditProfile',
     props: {
         dataInfo: Object,
+        getUserInfo:Function,
     },
     data() {
         return {
@@ -135,6 +136,7 @@ export default {
                     } else {
                         this.close = 'modal';
                         console.log("success 11...!", res.data.message);
+                        this.getUserInfo();
                     }
                 } catch (err) {
                     console.log(err);
@@ -153,12 +155,14 @@ export default {
                                 console.log("error 1...!", res.data.message);
                             } else {
                                 this.close = 'modal';
-                                console.log("success 11...!", res.data.message);
+                                console.log("success 1...!", res.data.message);
+                                this.getUserInfo();
                             }
                         } catch (err) {
                             console.log(err);
                         }
                     } else {
+                        console
                         this.valid = true;
                         this.validAncien = false;
                     }
