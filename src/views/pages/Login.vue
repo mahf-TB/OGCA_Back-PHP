@@ -83,7 +83,6 @@ export default {
   },
   methods:
   {
-
     async login() {
       var donnee = new FormData();
       if (this.matricule != '' && this.password != '') {
@@ -96,9 +95,9 @@ export default {
             this.valid = res.data.error
           } else {
             console.log("success 1...!", res.data.message);
-            
+
             localStorage.setItem("user-info", JSON.stringify(res.data.infoBD))
-            this.$router.push("/");
+            this.$router.push({ name: 'Dashboard' });
           }
         }).catch((err) => { console.log(err) });
       } else {
@@ -111,8 +110,9 @@ export default {
   }
 }
 
-
 </script>
+
+
 <style>
 input:focus {
   border: 2px solid red;

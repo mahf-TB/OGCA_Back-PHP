@@ -116,7 +116,6 @@ export default {
     },
     methods:{
         async getUserInfo(){
-
             const user = JSON.parse(localStorage.getItem("user-info"));
             var donnee = new FormData();
             donnee.append('matricule', user[0].matricule);
@@ -126,9 +125,7 @@ export default {
                     console.log("error 1...!", res.data.message);
                 } else {
                     console.log("success 1...!", res.data.message); 
-
                     var userDB = res.data.infoBD;
-
                     this.users.matricule = userDB[0].matricule;
                     this.users.nom = userDB[0].nom;
                     this.users.prenom = userDB[0].prenom;

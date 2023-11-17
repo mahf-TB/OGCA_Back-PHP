@@ -52,7 +52,7 @@
  
 <script>
 
-import { accountService } from "@/_service";
+import { accountService } from "@/_service"; 
 import Swal from 'sweetalert2';
 
 
@@ -140,4 +140,5 @@ export default {
    max-height: 500px;
    /* Ajustez la hauteur maximale selon vos besoins */
    overflow: auto;
-}</style>
+}
+</style>

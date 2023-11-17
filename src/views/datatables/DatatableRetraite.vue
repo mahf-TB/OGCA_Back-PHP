@@ -52,7 +52,8 @@ DataTable.use(pdfmake);
 DataTable.use(ButtonsHtml5);
 
 
-import { mapGetters } from "vuex";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 export default {
     components: {
         DataTable
@@ -97,16 +98,16 @@ export default {
 
         };
     },
-    computed:{
-        ...mapGetters(['getRetraite']),
-    },
-    mounted(){
-        
-    },
-    methods: {
-    
-
-    },
+    // computed:{
+    //     ...mapGetters(['getRetraite']),
+    // },
+    async setup() {
+        const store = useStore();
+        const getRetraite =  computed(() => store.getters.getRetraite);
+        const getTitre = computed(() => store.getters.getTitre)
+        await new Promise(getRetraite => setTimeout(getRetraite, 4000))
+        return { getRetraite, getTitre }
+    }
 
 };
 </script>

@@ -101,7 +101,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
           commit('setTitle', 'Liste des tout les agents');
           commit('setAvenant', res.data.dataAgents)
           
@@ -110,7 +109,6 @@ export default createStore({
         console.log(err);
       }
     },
-
     async actionAvenant6M({ commit }) {
       const user = JSON.parse(localStorage.getItem("user-info"));
       var donnee = new FormData();
@@ -123,7 +121,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
           commit('setTitle', 'Agents qui fait un avancement dans 6 mois');
           commit('setAvenant', res.data.dataAgents);
           commit('setRowAvenant1', res.data.count);
@@ -144,8 +141,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
-
           commit('setTitle', 'agents qui sont tard sont avancement');
           commit('setAvenant', res.data.dataAgents);
           commit('setRowAvenant2', res.data.count);
@@ -169,8 +164,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
-
           commit('setTitle', 'Liste des tout les agents Contractuel');
           commit('setContrat', res.data.dataAgents);
         }
@@ -190,8 +183,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
-
           commit('setTitle', 'Liste des agents qui doit renouveller son contrat');
           commit('setContrat', res.data.dataAgents);
           commit('setRowContrat1', res.data.count);
@@ -212,7 +203,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
           commit('setTitle', 'agents qui sont déja expirer son contrat');
           commit('setContrat', res.data.dataAgents);
           commit('setRowContrat2', res.data.count);
@@ -236,7 +226,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
           commit('setTitle', 'Liste des agents qui est sa retraite approche');
           commit('setRetraite', res.data.dataAgents);
           commit('setRowRetraite1', res.data.count);
@@ -257,7 +246,6 @@ export default createStore({
         if (res.data.error) {
           console.log("error 1...!", res.data.message);
         } else {
-          console.log("success 1...!", res.data.message);
           commit('setTitle', 'Liste des agents qui doit prendre sa retraite');
           commit('setRetraite', res.data.dataAgents);
           commit('setRowRetraite2', res.data.count);
@@ -266,7 +254,5 @@ export default createStore({
         console.log(err);
       }
     },
-  },
-  modules: {
   }
 })

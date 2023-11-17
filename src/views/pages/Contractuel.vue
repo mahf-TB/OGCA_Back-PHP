@@ -19,12 +19,20 @@
             </div>
         </div>
     </div>
-
-    <div class="container-fluid">
-        <div class="card p-3">
-            <DatatableContrat />
-        </div>
-    </div>
+    <Suspense >
+        <template #default>
+            <div class="container-fluid">
+                <div class="card p-3">
+                    <DatatableContrat />
+                </div>
+            </div>
+        </template>
+        <template #fallback>
+            <div class="container-fluid">
+                chargement...
+            </div>
+        </template>
+    </Suspense>
 </template>
  
 <script>

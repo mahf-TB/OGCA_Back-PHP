@@ -21,7 +21,7 @@ if ($action == 'login') {
 
   $matricule = $_POST['matricule'];
   $password = $_POST['password'];
-  $sql = "select matricule,nom,prenom,role from USERS where matricule ='$matricule' AND password='$password';";
+  $sql = "select * from USERS where matricule ='$matricule' AND password='$password';";
 
   $resultat = $conn->query($sql);
   $info = array();

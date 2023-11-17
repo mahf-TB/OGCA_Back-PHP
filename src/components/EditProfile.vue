@@ -16,17 +16,17 @@
                         <!-- matricule -->
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" v-model="user.matricule" id="floatingInput"
+                                <input type="text" class="form-control" v-model="user.matricule" id="floatingInput1"
                                     placeholder="votre matricule">
-                                <label for="floatingInput"> Matricule</label>
+                                <label for="floatingInput1"> Matricule</label>
                             </div>
                         </div>
                         <!-- mot de passe ancienne -->
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="password" class="form-control" :class="{ 'is-invalid': this.validAncien }"
-                                    v-model="motdepasse.ancien" id="floatingInput" placeholder="mot de passe securisé">
-                                <label for="floatingInput">Ancien mot de passe</label>
+                                    v-model="motdepasse.ancien" id="floatingPassword" placeholder="mot de passe securisé">
+                                <label for="floatingPassword">Ancien mot de passe</label>
                                 <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
                             </div>
                         </div>
@@ -34,8 +34,8 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" style="text-transform:capitalize;"
-                                    v-model="user.nom" id="floatingPassword" placeholder="votre nom">
-                                <label for="floatingPassword">Nom</label>
+                                    v-model="user.nom" id="floatingInput2" placeholder="votre nom">
+                                <label for="floatingInput2">Nom</label>
                             </div>
                         </div>
 
@@ -43,25 +43,25 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
-                                    v-model="motdepasse.nouveaux" id="floatingInput" placeholder="mot de passe securisé">
-                                <label for="floatingInput">Nouveaux mot de passe</label>
+                                    v-model="motdepasse.nouveaux" id="floatingPassword2" placeholder="mot de passe securisé">
+                                <label for="floatingPassword2">Nouveaux mot de passe</label>
                                 <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
                             </div>
                         </div>
                         <!-- prenom -->
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" v-model.trim="user.prenom" id="floatingInput"
+                                <input type="text" class="form-control" v-model.trim="user.prenom" id="floatingInput3"
                                     placeholder="votre prenom">
-                                <label for="floatingInput">Prenom</label>
+                                <label for="floatingInput3">Prenom</label>
                             </div>
                         </div>
                         <!-- mot de passe de comfirmation -->
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="password" class="form-control" :class="{ 'is-invalid': this.valid }"
-                                    v-model="motdepasse.confirme" id="floatingInput" placeholder="mot de passe securisé">
-                                <label for="floatingInput">Confirmation mot de passe</label>
+                                    v-model="motdepasse.confirme" id="floatingPassword3" placeholder="mot de passe securisé">
+                                <label for="floatingPassword3">Confirmation mot de passe</label>
                                 <div class="invalid-feedback">Verifiez votre mot de pas si correct! </div>
                             </div>
                         </div>
@@ -69,8 +69,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                    <button type="button" @click.prevent="enregistrer()" class="btn btn-success"
-                        :data-dismiss="close">Enregistrer</button>
+                    <button type="button" @click.prevent="enregistrer()" class="btn btn-success">Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -120,10 +119,13 @@ export default {
                 console.log(this.user)
             }
         },
+        closeModal(){
+            $('#modalCenter').modal('hide');
+        },
         async enregistrer() {
             const users = JSON.parse(localStorage.getItem("user-info"));
             var donnee = new FormData();
-
+           
             if (this.motdepasse.ancien == '' && this.motdepasse.nouveaux == '' && this.motdepasse.confirme == '') {
                 donnee.append('id_mat', users[0].matricule);
                 donnee.append('matricule', this.user.matricule);
@@ -134,8 +136,10 @@ export default {
                     if (res.data.error) {
                         console.log("error 1...!", res.data.message);
                     } else {
-                        this.close = 'modal';
+                        
                         console.log("success 11...!", res.data.message);
+                        this.getInfo();
+                        this.closeModal();
                         this.getUserInfo();
                     }
                 } catch (err) {
@@ -154,8 +158,9 @@ export default {
                             if (res.data.error) {
                                 console.log("error 1...!", res.data.message);
                             } else {
-                                this.close = 'modal';
                                 console.log("success 1...!", res.data.message);
+                                this.getInfo();
+                                this.closeModal();
                                 this.getUserInfo();
                             }
                         } catch (err) {
@@ -172,7 +177,25 @@ export default {
 
             }
 
-        }
+        },
+        async getInfo(){
+            var donnee = new FormData();
+            donnee.append('matricule', this.user.matricule);
+            try {
+                const res = await accountService.getUserEdit(donnee);
+                if (res.data.error) {
+                    console.log("error 1...!", res.data.message);
+                } else {
+                    console.log("success 1...!", res.data.message);
+                    localStorage.setItem("user-info", JSON.stringify(res.data.infoBD))
+                    
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
+
     }
 }
 </script>

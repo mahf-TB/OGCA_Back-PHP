@@ -53,8 +53,13 @@ let allRetraiteTard = (donnees)=>{
     return Axios.post('/retraite.php?action=tard', donnees)
 }
 
-
-
+//axios pour  tout  chart.js
+let getNbChart = ()=>{
+    return Axios.get('/chart.php?action=nb')
+}
+let getNbSection = (donnees)=>{
+    return Axios.post('/chart.php?action=nbSec',donnees)
+}
 
 
 //axios pour  tout  SECTION
@@ -86,5 +91,5 @@ export const accountService = {
     allAvenantComplet,allAvenant6M,allAvenantTard,
     allContratComplet,allContrat6M,allContratTard,
     allRetraite1A,allRetraiteTard,
-    addImport,getUserEdit,setUserEdit
+    addImport,getUserEdit,setUserEdit,getNbChart,getNbSection
 }

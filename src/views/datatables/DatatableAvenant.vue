@@ -54,7 +54,15 @@ DataTable.use(pdfmake);
 DataTable.use(ButtonsHtml5);
 
 
-import { mapGetters } from "vuex";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
+const getdonnee = async () => {
+    await new Promise(resolve => setTimeout(resolve, 60))
+    const store = useStore();
+    const dataA = computed(() => store.getters.getAvenant);
+    return { dataA }
+    
+}
 export default {
     components: {
         DataTable
@@ -96,16 +104,16 @@ export default {
                     className: 'btn btn-dark'
                 },
             ],
-
-
         };
     },
-    computed:{
-        ...mapGetters(['getAvenant', 'getTitre']),
-    },
-    methods: {        
+    async setup() {
+        const store = useStore();
+        const getAvenant =  computed(() => store.getters.getAvenant);
+        const getTitre = computed(() => store.getters.getTitre)
+        await new Promise(getAvenant => setTimeout(getAvenant, 4000))
+        return { getAvenant, getTitre }
+    }
 
-    },
 
 };
 </script>

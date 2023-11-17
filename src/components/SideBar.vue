@@ -98,13 +98,13 @@ export default {
         };
     },
     mounted() {
-
         const user = JSON.parse(localStorage.getItem("user-info"));
         this.nomConnecter = user[0].nom + ' ' + user[0].prenom;
         if (user[0].role == 'ADMIN') {
             this.ajouter = true;
         }
     },
+    
     methods: {
         ...mapActions([
             'actionAvenantTout', 'actionAvenant6M', 'actionAvenantTard',
@@ -114,22 +114,22 @@ export default {
         onData(results) {
             // Do something with the data here
             console.log('Rows => ', results.rows);
-            var donnee = new FormData();
+            // var donnee = new FormData();
 
-            for (let i = 0; i < results.rows.lenght; i++) {
+            // for (let i = 0; i < results.rows.lenght; i++) {
 
-                donnee.append('code', results.rows[i].col1);
-                donnee.append('soa', results.rows[i].col2);
-                donnee.append('libelle', results.rows[i].col3);
+            //     donnee.append('code', results.rows[i].col1);
+            //     donnee.append('soa', results.rows[i].col2);
+            //     donnee.append('libelle', results.rows[i].col3);
 
-                accountService.addImport(donnee).then((res) => {
-                    if (res.data.error) {
-                        console.log("🚫error 1...!num:", i, res.data.message);
-                    } else {
-                        console.log("✅success 1...! num:", i, res.data.message);
-                    }
-                }).catch((err) => { console.log(err) });
-            }
+            //     accountService.addImport(donnee).then((res) => {
+            //         if (res.data.error) {
+            //             console.log("🚫error 1...!num:", i, res.data.message);
+            //         } else {
+            //             console.log("✅success 1...! num:", i, res.data.message);
+            //         }
+            //     }).catch((err) => { console.log(err) });
+            // }
 
         },
         deconnecter() {
@@ -138,6 +138,7 @@ export default {
         },
 
     }
+
 }
 
 

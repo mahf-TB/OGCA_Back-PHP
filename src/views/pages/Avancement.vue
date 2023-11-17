@@ -3,6 +3,7 @@
         <div class="row g-5">
             <div class="col-md-6">
                 <h4 class="toUpper">{{ getTitre }}</h4>
+                
             </div>
             <div class="col-md-6">
                 <div class="xp-searchbar">
@@ -19,14 +20,25 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="card p-3">
-            <DatatableAvenant />
-        </div>
-    </div>
+    <div><h4 class="toUpper" v-if="err">{{ err }}</h4></div>
+    <Suspense >
+        <template #default>
+            <div class="container-fluid">
+                <div class="card p-3">
+                    <DatatableAvenant />
+                </div>
+            </div>
+        </template>
+        <template #fallback>
+            <div class="container-fluid">
+                chargement...
+            </div>
+        </template>
+    </Suspense>
 </template>
 
 <script>
+import { ref, onErrorCaptured } from "vue";
 import { mapGetters } from "vuex";
 import sousHeader from "@/components/sousHeader.vue";
 import DatatableAvenant from '@/views/datatables/DatatableAvenant.vue';
@@ -38,6 +50,10 @@ export default {
     computed: {
         ...mapGetters(['getTitre']),
     },
-
+    setup(){
+        const err = ref(null)
+        onErrorCaptured(()=>{err.value ='quelque chose ne vas pas bien'})
+        return { err }
+    }
 }
 </script>

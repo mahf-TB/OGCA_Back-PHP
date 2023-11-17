@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-data-table :headers="headers" :items="dataUser" item-value="id" :items-per-page="6">
+        <v-data-table :headers="headers" :items="dataUsers" item-value="id" :items-per-page="6" class="elevation-1">
             <template v-slot:item.actions="{ item }">
                 <div>
                     <v-icon color="info" @click.prevent="editItem(item)">mdi-book-edit</v-icon>
@@ -13,8 +13,10 @@
                         </template>
                         <v-list>
                             <v-list-item>
-                                <v-list-item  @click.prevent="editItem(item)"> Definir comme Admin </v-list-item>
-                                <v-list-item  ><RouterLink to="/user/section" class="text-dark"> Ajouter des Section</RouterLink> </v-list-item>
+                                <v-list-item @click.prevent="editItem(item)"> Definir comme Admin </v-list-item>
+                                <v-list-item>
+                                    <RouterLink to="/user/section" class="text-dark"> Ajouter des Section</RouterLink>
+                                </v-list-item>
                             </v-list-item>
                         </v-list>
                     </v-menu>
@@ -27,6 +29,7 @@
 <script>
 import Swal from 'sweetalert2'
 import { accountService } from "@/_service";
+import { ref } from "vue";
 export default {
     data() {
         return {
@@ -34,7 +37,7 @@ export default {
                 { title: 'Matricule', key: 'matricule' },
                 { title: 'Nom', key: 'nom' },
                 { title: 'Prénom', key: 'prenom' },
-                // { title: 'Mot de Passe', sortable: false, key: 'password' },
+                //{ title: 'Mot de Passe', sortable: false, key: 'password' },
                 { title: 'Rôle', key: 'role' },
                 { title: 'Actions', key: 'actions', sortable: false },
             ],
@@ -42,17 +45,22 @@ export default {
         };
     },
     mounted() {
-        this.getAllUser();
+        // this.getAllUser();
+    },
+    async setup() {
+        const dataUsers = ref(null)
+        try {
+            const res = await accountService.onAllUser();
+            dataUsers.value = await res.data.dataUser;
+            console.log(res);
+        } catch (err) {
+            console.error(err);
+        }
+        return {
+            dataUsers
+        }
     },
     methods: {
-        async getAllUser() {
-            try {
-                const res = await accountService.onAllUser();
-                this.dataUser = res.data.dataUser;
-            } catch (err) {
-                console.error(err);
-            }
-        },
         editItem(item) {
             localStorage.setItem("edit-user", JSON.stringify(item.columns))
             this.$router.push("/user/edit");
@@ -75,7 +83,7 @@ export default {
 
                 }).then((result) => {
                     if (result.isConfirmed) {
-                       accountService.deleteUser(donnee).then((res) => {
+                        accountService.deleteUser(donnee).then((res) => {
                             if (res.data.error) {
                                 Swal.fire({
                                     title: 'Deleted!',
